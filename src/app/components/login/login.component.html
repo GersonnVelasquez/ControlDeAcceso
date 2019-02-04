@@ -1,0 +1,56 @@
+<div class="login">
+  <div class="card">
+    <h5 class="text-center card-header">
+         Control de Acceso
+    </h5>
+    <div class="card-body">
+        <img src="https://pbs.twimg.com/profile_images/960879129695367168/OWZHMMSm_400x400.jpg" class="logo img-fluid rounded mx-auto d-block" alt="...">
+      <form [formGroup]="loginForm" (ngSubmit)="Login()" autocomplete="off" novalidate>
+        <div class="form-group row">
+          <label for="inputUsuario" class="col-sm-4 col-form-label">Usuario:</label>
+          <div class="col-sm-8">
+            <input  type="text" 
+                    class="form-control" 
+                    formControlName="usuario" 
+                    id="inputUsuario" 
+                    placeholder="Usuario"
+                    [ngClass]="{ 'is-invalid': loginForm.get('usuario').invalid && (loginForm.get('usuario').dirty || loginForm.get('usuario').touched) }">
+            <div  class="invalid-feedback" 
+                  *ngIf="loginForm.get('usuario').invalid && (loginForm.get('usuario').dirty || loginForm.get('usuario').touched)">
+              Usuario Requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="inputContraseña" class="col-sm-4 col-form-label">Contraseña:</label>
+          <div class="col-sm-8">
+            <input  type="text" 
+            class="form-control" 
+            formControlName="password" 
+            id="inputContraseña" 
+            placeholder="Contraseña"
+            [ngClass]="{ 'is-invalid': loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched) }">
+          <div  class="invalid-feedback" 
+                *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+            Contraseña Requerida.
+          </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <a  class="col-sm-12 col-form-label" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" >Recuperar contraseña</a>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              Para recuperar su contraseña pongase en contacto con el departamento de IT mandando un correo a it@gv.com
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-block btn-success" [disabled]="loginForm.invalid">Iniciar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
