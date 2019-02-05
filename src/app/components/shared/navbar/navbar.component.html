@@ -1,15 +1,30 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">
     <img src="" width="30" height="30" alt="">
-    GV
+    GVIP
   </a>
   
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['inicio']">Inicio</a>
+        <a class="nav-link" [routerLink]="['inicio']">
+          <i class="fas fa-home"></i>
+          Inicio
+        </a>
       </li>
+      <li class="nav-item dropdown" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-toolbox"></i>
+          Administrador IT
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['usuarios']"><i class="ico fas fa-users"></i>Administrar Ususario</a>
+          <a class="dropdown-item" [routerLink]="['roles']"><i class="ico far fa-check-square"></i>Administrar Roles</a>
+          <a class="dropdown-item" [routerLink]="['empresas']"><i class="ico fas fa-building"></i>Administrar Empresas</a>
+        </div>
+      </li>
+
     </ul>
 
     <div class="my-2 my-lg-0">
