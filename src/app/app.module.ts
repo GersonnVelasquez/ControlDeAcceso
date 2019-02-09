@@ -5,12 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// Servicios
 import { LoginComponent } from './components/login/login.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { EmpresasComponent } from './components/empresas/empresas.component';
+import { GtableComponent } from './components/shared/gtable/gtable.component';
+import { SortPipe } from './customPipes/sort/sort.pipe';
+import { FilterPipe } from './customPipes/filter/filter.pipe';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,17 @@ import { EmpresasComponent } from './components/empresas/empresas.component';
     InicioComponent,
     UsuariosComponent,
     RolesComponent,
-    EmpresasComponent
+    EmpresasComponent,
+    GtableComponent,
+    SortPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

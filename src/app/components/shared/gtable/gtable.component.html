@@ -1,0 +1,62 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <h4 class="col-md-8">
+        {{Titulo}}
+      </h4>
+      <input type="text" class="form-control col-md-4" placeholder="Buscar" aria-label="Buscar"
+        aria-describedby="basic-addon1" [(ngModel)]="searchText">
+    </div>
+  </div>
+  <div class="card-body">
+    <table id="table_id" class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th style="cursor: pointer" (click)="SetOrder(Columna)" scope="col" *ngFor="let Columna of Columnas">
+            {{Columna}}
+            <span *ngIf="OrderColumn === Columna">
+              <i *ngIf="Asc" style="cursor: pointer" class="fas fa-sort-amount-up"></i>
+              <i *ngIf="!Asc" style="cursor: pointer" class="fas fa-sort-amount-down"></i>
+            </span>
+          </th>
+          <th style="max-width: 80px;">Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let Data of Data | filter:searchText | sort: OrderColumn : Asc | slice:page === 1 ? 0 : ((page-1)*Ctd) : page === 1 ? (page*Ctd) : ((page-1)*Ctd) ++ Ctd">
+          <td *ngFor="let Columna of Columnas">
+            {{Data[Columna]}}
+          </td> 
+          <td style="max-width: 80px;">
+            <div class="btn-group m-100">
+              <button (click)="Eliminar(Data)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+              <button (click)="Modificar(Data)"type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="row d-flex">
+      <ngb-pagination class="p-2" [collectionSize]="(((Data | filter:searchText).length/Ctd)*10)" [(page)]="page"
+        [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+
+
+      <div class="ml-auto p-2">
+        <div class="d-flex justify-content-around">
+          <i class="mr-2">Mostrar:</i>
+          <select [(ngModel)]="Ctd" class="form-control">
+            <option>10</option>
+            <option>25</option>
+            <option>50</option>
+          </select>
+          <i class="ml-2">Registros.</i>
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
