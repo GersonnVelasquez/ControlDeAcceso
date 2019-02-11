@@ -1,4 +1,4 @@
-import { Component, OnInit, Input  } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-gtable',
@@ -20,8 +20,10 @@ export class GtableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.Columnas = Object.getOwnPropertyNames(this.Data[0]);
-    this.OrderColumn = this.Columnas[0];
+    if (!!this.Data[0]) {
+      this.Columnas = Object.getOwnPropertyNames(this.Data[0]);
+      this.OrderColumn = this.Columnas[0];
+    }
   }
 
   SetOrder(OrderColumn: string) {

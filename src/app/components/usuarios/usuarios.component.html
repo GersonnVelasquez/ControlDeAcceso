@@ -1,3 +1,111 @@
-<p>
-  usuarios works!
-</p>
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">
+        Ingresar Nuevo Usuario
+      </div>
+      <div class="card-body">
+        <form [formGroup]="UsuarioForm" (ngSubmit)="AgregarUsuario()" autocomplete="off" novalidate>
+          <div class="form-group">
+            <label for="Nombre">Nombre Completo:</label>
+            <input type="text" class="form-control" id="Nombre" aria-describedby="Nombre"
+              placeholder="Ejem: Axel Garcia" formControlName="Nombre"
+              [ngClass]="{ 'is-invalid': UsuarioForm.get('Nombre').invalid && (UsuarioForm.get('Nombre').dirty || UsuarioForm.get('Nombre').touched),
+                                  'is-valid': UsuarioForm.get('Nombre').valid && (UsuarioForm.get('Nombre').dirty || UsuarioForm.get('Nombre').touched)}">
+            <div class="invalid-feedback"
+              *ngIf="UsuarioForm.controls['Nombre'].errors?.required && (UsuarioForm.get('Nombre').dirty || UsuarioForm.get('Nombre').touched)">
+              Campo Requerido.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Usuario">Usuario:</label>
+            <input type="text" class="form-control" id="Usuario" aria-describedby="Usuario" placeholder="Ejem: AxelG"
+              formControlName="Usuario"
+              [ngClass]="{ 'is-invalid': UsuarioForm.get('Usuario').invalid && (UsuarioForm.get('Usuario').dirty || UsuarioForm.get('Usuario').touched),
+                                  'is-valid': UsuarioForm.get('Usuario').valid && (UsuarioForm.get('Usuario').dirty || UsuarioForm.get('Usuario').touched)}">
+            <div class="invalid-feedback"
+              *ngIf="UsuarioForm.controls['Usuario'].errors?.required && (UsuarioForm.get('Usuario').dirty || UsuarioForm.get('Usuario').touched)">
+              Campo Requerido.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Contraseña">Contraseña:</label>
+            <input type="password" class="form-control" id="Contraseña" placeholder="Ejem: AxE2018#"
+              formControlName="Password"
+              [ngClass]="{ 'is-invalid': UsuarioForm.get('Password').invalid && (UsuarioForm.get('Password').dirty || UsuarioForm.get('Password').touched),
+                                 'is-valid': UsuarioForm.get('Password').valid && (UsuarioForm.get('Password').dirty || UsuarioForm.get('Password').touched)}">
+            <div class="invalid-feedback"
+              *ngIf="UsuarioForm.controls['Password'].errors?.minlength && (UsuarioForm.get('Password').dirty || UsuarioForm.get('Password').touched)">
+              Contraseña debe tener al menos 8 digitos.
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="UsuarioForm.controls['Password'].errors?.required && (UsuarioForm.get('Password').dirty || UsuarioForm.get('Password').touched)">
+              Campo Requerido.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ConfContraseña">Confirmar Contraseña:</label>
+            <input type="password" class="form-control" id="ConfContraseña" placeholder="Ejem: AxE2018#"
+              formControlName="VerifPass"
+              [ngClass]="{ 'is-invalid': UsuarioForm.get('VerifPass').invalid && (UsuarioForm.get('VerifPass').dirty || UsuarioForm.get('VerifPass').touched),
+                                 'is-valid': UsuarioForm.get('VerifPass').valid && (UsuarioForm.get('VerifPass').dirty || UsuarioForm.get('VerifPass').touched)}">
+            <div class="invalid-feedback"
+              *ngIf="UsuarioForm.controls['VerifPass'].errors?.passMatch && (UsuarioForm.get('VerifPass').dirty || UsuarioForm.get('VerifPass').touched)">
+              Contraseñas no Coinciden.
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="UsuarioForm.controls['VerifPass'].errors?.required && (UsuarioForm.get('VerifPass').dirty || UsuarioForm.get('VerifPass').touched)">
+              Campo Requerido.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Correo">Correo:</label>
+            <input type="email" class="form-control" id="Correo" aria-describedby="Correo"
+              placeholder="Ejem: Axel@gmail.com" formControlName="Correo"
+              [ngClass]="{ 'is-invalid': UsuarioForm.get('Correo').invalid && (UsuarioForm.get('Correo').dirty || UsuarioForm.get('Correo').touched),
+              'is-valid': UsuarioForm.get('Correo').valid && (UsuarioForm.get('Correo').dirty || UsuarioForm.get('Correo').touched)}">
+            <div class="invalid-feedback"
+              *ngIf="UsuarioForm.controls['Correo'].errors?.required && (UsuarioForm.get('Correo').dirty || UsuarioForm.get('Correo').touched)">
+              Campo Requerido.
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="UsuarioForm.controls['Correo'].errors?.pattern && (UsuarioForm.get('Correo').dirty || UsuarioForm.get('Correo').touched)">
+              El Correo no tiene un formato valido.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Rol">Rol:</label>
+            <select class="form-control" id="Rol" formControlName="Rol"
+              [ngClass]="{ 'is-invalid': UsuarioForm.get('Rol').invalid && (UsuarioForm.get('Rol').dirty || UsuarioForm.get('Rol').touched),
+            'is-valid': UsuarioForm.get('Rol').valid && (UsuarioForm.get('Rol').dirty || UsuarioForm.get('Rol').touched)}">
+              <option>1</option>
+            </select>
+            <div class="invalid-feedback"
+              *ngIf="UsuarioForm.controls['Rol'].errors?.required && (UsuarioForm.get('Rol').dirty || UsuarioForm.get('Rol').touched)">
+              Campo Requerido.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Empresa">Empresa:</label>
+            <select class="form-control" id="Empresa" formControlName="Empresa"
+              [ngClass]="{ 'is-invalid': UsuarioForm.get('Empresa').invalid && (UsuarioForm.get('Empresa').dirty || UsuarioForm.get('Empresa').touched),
+            'is-valid': UsuarioForm.get('Empresa').valid && (UsuarioForm.get('Empresa').dirty || UsuarioForm.get('Empresa').touched)}">
+              <option>1</option>
+            </select>
+            <div class="invalid-feedback"
+              *ngIf="UsuarioForm.controls['Empresa'].errors?.required && (UsuarioForm.get('Empresa').dirty || UsuarioForm.get('Empresa').touched)">
+              Campo Requerido.
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="UsuarioForm.invalid">Agregar</button>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-8">
+    <app-gtable [Data]="UsuariosData" [Titulo]="'Usuarios Activos'"></app-gtable>
+  </div>
+</div>

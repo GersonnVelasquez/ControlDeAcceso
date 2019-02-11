@@ -10,8 +10,7 @@ import { LoginService } from 'src/app/servicios/login/login.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  usuario: FormControl;
-  password: FormControl;
+
 
   constructor(private login: LoginService) { }
 
