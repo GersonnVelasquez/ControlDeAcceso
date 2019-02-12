@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
 
   Login(): void {
     if (this.loginForm.valid) {
-      this.login.login();
+      this.login.login(this.loginForm.controls['usuario'].value, this.loginForm.controls['password'].value);
+
       this.loginForm.reset();
     } else {
       alert('Ingrese todos los datos solicitados.');
