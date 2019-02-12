@@ -5,14 +5,14 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { EmpresasComponent } from './components/empresas/empresas.component';
-
+import { AuthGuadService } from './servicios/shared/auth-guad.service';
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'inicio', component: InicioComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'usuarios', component: UsuariosComponent },
-  { path: 'roles', component: RolesComponent },
-  { path: 'empresas', component: EmpresasComponent }];
+  { path: '', component: LoginComponent},
+  { path: 'inicio', component: InicioComponent, canActivate: [AuthGuadService] },
+  { path: 'login', component: LoginComponent},
+  { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuadService] },
+  { path: 'roles', component: RolesComponent, canActivate: [AuthGuadService] },
+  { path: 'empresas', component: EmpresasComponent, canActivate: [AuthGuadService] }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
