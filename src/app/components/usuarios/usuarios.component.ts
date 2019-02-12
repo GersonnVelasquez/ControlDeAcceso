@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { UsuariosService } from 'src/app/servicios/usuarios/usuarios.service';
+import { UsuariosService } from 'src/app/servicios/administracionIT/usuarios.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -9,13 +9,14 @@ import { UsuariosService } from 'src/app/servicios/usuarios/usuarios.service';
 })
 export class UsuariosComponent implements OnInit {
 
-    UsuariosData = [];
+  UsuariosData = [];
   UsuarioForm: FormGroup;
   constructor(private usuarios: UsuariosService) {
-   }
+  }
 
   ngOnInit() {
     this.UsuariosData = this.usuarios.usuarios;
+
     this.UsuarioForm = new FormGroup({
       'Nombre': new FormControl('', [Validators.required]),
       'Usuario': new FormControl('', [Validators.required]),

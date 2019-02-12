@@ -14,6 +14,7 @@ import { GtableComponent } from './components/shared/gtable/gtable.component';
 import { SortPipe } from './customPipes/sort/sort.pipe';
 import { FilterPipe } from './customPipes/filter/filter.pipe';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
