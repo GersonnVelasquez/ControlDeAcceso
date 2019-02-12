@@ -22,9 +22,9 @@ export class LoginService {
     const apiURL = `${this.apiRoot}api/Login/${User}/${Pass}`;
     this._login = true;
     this.router.navigate(['/inicio']);
-    this.http.get(apiURL).subscribe(data => {
-      this._login = data;
-    });
+    // this.http.get(apiURL).subscribe(data => {
+    //   this._login = data;
+    // });
   }
 
   public logout(): void {

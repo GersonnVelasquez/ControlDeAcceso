@@ -1,3 +1,28 @@
-<p>
-  roles works!
-</p>
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">
+        Ingresar Nuevo Rol
+      </div>
+      <div class="card-body">
+        <form [formGroup]="RolesForm" (ngSubmit)="AgregarRol()" autocomplete="off" novalidate>
+          <div class="form-group">
+            <label for="Descripcion">Descripcion:</label>
+            <input type="text" class="form-control" id="Descripcion" aria-describedby="Descripcion"
+              placeholder="Ejem: Axel Garcia" formControlName="Descripcion"
+              [ngClass]="{ 'is-invalid': RolesForm.get('Descripcion').invalid && (RolesForm.get('Descripcion').dirty || RolesForm.get('Descripcion').touched),
+                                  'is-valid': RolesForm.get('Descripcion').valid && (RolesForm.get('Descripcion').dirty || RolesForm.get('Descripcion').touched)}">
+            <div class="invalid-feedback"
+              *ngIf="RolesForm.controls['Descripcion'].errors?.required && (RolesForm.get('Descripcion').dirty || RolesForm.get('Descripcion').touched)">
+              Campo Requerido.
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="RolesForm.invalid">Agregar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-8">
+    <app-gtable [Data]="Roles" [Titulo]="'Roles'"></app-gtable>
+  </div>
+</div>

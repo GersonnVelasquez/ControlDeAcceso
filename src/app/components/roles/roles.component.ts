@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RolesService } from 'src/app/servicios/administracionIT/roles.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-roles',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RolesComponent implements OnInit {
 
-  constructor() { }
+  Roles = [];
+  RolesForm: FormGroup;
+  constructor(private roles: RolesService) { }
 
   ngOnInit() {
+    this.RolesForm = new FormGroup({
+      'Descripcion': new FormControl('', [Validators.required]),
+    });
+  }
+
+  AgregarRol(): void {
+
   }
 
 }
