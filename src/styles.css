@@ -3,3 +3,8 @@
 .ico{
     padding-right: 5px; 
 }
+
+
+#toast-container > div {
+    opacity:1;
+}

@@ -19,7 +19,7 @@
               <i *ngIf="!Asc" style="cursor: pointer" class="fas fa-sort-amount-down"></i>
             </span>
           </th>
-          <th style="max-width: 80px;">Accion</th>
+          <th *ngIf="Customize" style="max-width: 80px;">Accion</th>
         </tr>
       </thead>
       <tbody>
@@ -28,10 +28,10 @@
           <td *ngFor="let Columna of Columnas">
             {{Data[Columna]}}
           </td> 
-          <td style="max-width: 80px;">
+          <td *ngIf="Customize" style="max-width: 80px;">
             <div class="btn-group m-100">
-              <button (click)="Eliminar(Data)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-              <button (click)="Modificar(Data)"type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
+              <button *ngIf="Delete" (click)="Eliminar(Data)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+              <button *ngIf="Update" (click)="Modificar(Data)"type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
             </div>
           </td>
         </tr>
@@ -47,6 +47,7 @@
         <div class="d-flex justify-content-around">
           <i class="mr-2">Mostrar:</i>
           <select [(ngModel)]="Ctd" class="form-control">
+            <option>5</option>
             <option>10</option>
             <option>25</option>
             <option>50</option>

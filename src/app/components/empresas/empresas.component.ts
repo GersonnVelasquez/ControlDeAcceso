@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { UsuariosService } from 'src/app/servicios/administracionIT/usuarios.service';
+import { EmpresasService } from 'src/app/servicios/administracionIT/empresas.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-empresas',
@@ -12,9 +13,10 @@ export class EmpresasComponent implements OnInit {
   Empresas = [];
   EmpresasForm: FormGroup;
 
-  constructor(private usuarios: UsuariosService) { }
+  constructor(private empresas: EmpresasService, private Message: ToastrService) { }
 
   ngOnInit() {
+    this.GetEmpresas();
     this.EmpresasForm = new FormGroup({
       'NombreEmpresa': new FormControl('', [Validators.required]),
       'Logo': new FormControl()
@@ -22,7 +24,46 @@ export class EmpresasComponent implements OnInit {
   }
 
   AgregarEmpresa(): void {
-        console.log(this.EmpresasForm.value);
+    const Empresa = {
+      'id_empresa': '',
+      'nombre': this.EmpresasForm.controls['NombreEmpresa'].value,
+      'logo': null
+    };
+
+    this.empresas.AddEmpresas(Empresa).subscribe(
+      _ => {
+      },
+      _error => {
+        alert('Error');
+      },
+      () => {
+        this.GetEmpresas();
+        this.EmpresasForm.reset();
+        this.Message.success('Empresa Agregada Correctamente', 'Listo!');
+      }
+    );
+  }
+
+  GetEmpresas(): void {
+    this.empresas.GetEmpresas().subscribe(
+      data => {
+        this.Empresas = data;
+      });
+  }
+
+  DeleteEmpresa(Empresa): void {
+    this.empresas.DeleteEmpresas(Empresa).subscribe(
+      _ => {
+      },
+      _error => {
+        alert('Error');
+      },
+      () => {
+        this.GetEmpresas();
+        this.EmpresasForm.reset();
+        this.Message.success('Empresa Eliminada Correctamente', 'Listo!');
+      }
+    );
   }
 
 }

@@ -9,7 +9,7 @@
           <div class="form-group">
             <label for="Descripcion">Descripcion:</label>
             <input type="text" class="form-control" id="Descripcion" aria-describedby="Descripcion"
-              placeholder="Ejem: Axel Garcia" formControlName="Descripcion"
+              placeholder="Ejem: Administrador" formControlName="Descripcion"
               [ngClass]="{ 'is-invalid': RolesForm.get('Descripcion').invalid && (RolesForm.get('Descripcion').dirty || RolesForm.get('Descripcion').touched),
                                   'is-valid': RolesForm.get('Descripcion').valid && (RolesForm.get('Descripcion').dirty || RolesForm.get('Descripcion').touched)}">
             <div class="invalid-feedback"
@@ -23,6 +23,11 @@
     </div>
   </div>
   <div class="col-8">
-    <app-gtable [Data]="Roles" [Titulo]="'Roles'"></app-gtable>
+    <app-gtable 
+                  [Data]= "Roles" 
+                  [Titulo]= "'Roles'" 
+                  [Ignore]= "['id_rol']"
+                  [Delete]= "true"
+                  (OnDelete)="DeleteRol($event)"></app-gtable>
   </div>
 </div>

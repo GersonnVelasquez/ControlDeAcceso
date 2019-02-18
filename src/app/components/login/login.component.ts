@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl  } from '@angular/forms';
 import { LoginService } from 'src/app/servicios/shared/login.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
 
-  constructor(private login: LoginService) { }
+  constructor(private login: LoginService,private Message: ToastrService) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -24,10 +25,9 @@ export class LoginComponent implements OnInit {
   Login(): void {
     if (this.loginForm.valid) {
       this.login.login(this.loginForm.controls['usuario'].value, this.loginForm.controls['password'].value);
-
       this.loginForm.reset();
     } else {
-      alert('Ingrese todos los datos solicitados.');
+      this.Message.error('Datos Imcompletos', 'Error');
     }
   }
 
