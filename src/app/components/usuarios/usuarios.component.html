@@ -78,7 +78,7 @@
             <select class="form-control" id="Rol" formControlName="Rol"
               [ngClass]="{ 'is-invalid': UsuarioForm.get('Rol').invalid && (UsuarioForm.get('Rol').dirty || UsuarioForm.get('Rol').touched),
             'is-valid': UsuarioForm.get('Rol').valid && (UsuarioForm.get('Rol').dirty || UsuarioForm.get('Rol').touched)}">
-              <option>1</option>
+              <option *ngFor="let rol of RolesData">{{rol.descripcion}}</option>
             </select>
             <div class="invalid-feedback"
               *ngIf="UsuarioForm.controls['Rol'].errors?.required && (UsuarioForm.get('Rol').dirty || UsuarioForm.get('Rol').touched)">
@@ -90,7 +90,7 @@
             <select class="form-control" id="Empresa" formControlName="Empresa"
               [ngClass]="{ 'is-invalid': UsuarioForm.get('Empresa').invalid && (UsuarioForm.get('Empresa').dirty || UsuarioForm.get('Empresa').touched),
             'is-valid': UsuarioForm.get('Empresa').valid && (UsuarioForm.get('Empresa').dirty || UsuarioForm.get('Empresa').touched)}">
-              <option>1</option>
+              <option *ngFor="let emp of EmpresasData">{{emp.nombre}}</option>
             </select>
             <div class="invalid-feedback"
               *ngIf="UsuarioForm.controls['Empresa'].errors?.required && (UsuarioForm.get('Empresa').dirty || UsuarioForm.get('Empresa').touched)">
@@ -106,6 +106,10 @@
   </div>
 
   <div class="col-8">
-    <app-gtable [Data]="UsuariosData" [Titulo]="'Usuarios Activos'"></app-gtable>
+    <app-gtable [Data]= "UsuariosData" 
+                [Titulo]="'Usuarios Activos'"
+                [Ignore]= "['id_usuario','id_rol','id_empresa']"
+                [Delete]= "true"
+                (OnDelete)="DeleteUsuario($event)"></app-gtable>
   </div>
 </div>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { UsuariosService } from 'src/app/servicios/administracionIT/usuarios.service';
+import { ToastrService } from 'ngx-toastr';
+import { EmpresasService } from 'src/app/servicios/administracionIT/empresas.service';
+import { RolesService } from 'src/app/servicios/administracionIT/roles.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -10,12 +13,19 @@ import { UsuariosService } from 'src/app/servicios/administracionIT/usuarios.ser
 export class UsuariosComponent implements OnInit {
 
   UsuariosData = [];
+  RolesData = [];
+  EmpresasData = [];
+
   UsuarioForm: FormGroup;
-  constructor(private usuarios: UsuariosService) {
+  constructor(private usuarios: UsuariosService,
+    private Message: ToastrService,
+    private empresas: EmpresasService,
+    private roles: RolesService) {
   }
 
   ngOnInit() {
-    this.UsuariosData = this.usuarios.usuarios;
+    this.getInfo();
+    this.GetUsuarios();
 
     this.UsuarioForm = new FormGroup({
       'Nombre': new FormControl('', [Validators.required]),
@@ -38,6 +48,16 @@ export class UsuariosComponent implements OnInit {
     ]);
   }
 
+  getInfo() {
+    this.empresas.GetEmpresas().subscribe(
+      data => {
+        this.EmpresasData = data;
+      });
+    this.roles.GetRoles().subscribe(
+      data => {
+        this.RolesData = data;
+      });
+  }
 
   passwordMatch(control: FormControl): { [key: string]: boolean } | null {
     if (this.UsuarioForm.controls['Password'].value !== control.value) {
@@ -48,11 +68,52 @@ export class UsuariosComponent implements OnInit {
     return null;
   }
 
-  AgregarUsuario() {
-    console.log(this.UsuariosData);
-    this.usuarios.addUsuario(this.UsuarioForm.value);
-    this.UsuariosData = this.usuarios.usuarios;
 
+  AgregarUsuario(): void {
+    const Usuario = {
+      'id_usuario': '',
+      'nombre': this.UsuarioForm.controls['Nombre'].value,
+      'usuario1': this.UsuarioForm.controls['Usuario'].value,
+      'contrasena': this.UsuarioForm.controls['Password'].value,
+      'correo': this.UsuarioForm.controls['Correo'].value,
+      'id_rol': 0,
+      'id_empresa': 0
+    };
+
+    this.usuarios.AddUsuario(Usuario).subscribe(
+      _ => {
+      },
+      _error => {
+        alert('Error');
+      },
+      () => {
+        this.GetUsuarios();
+        this.UsuarioForm.reset();
+        this.Message.success('Usuario Agregado Correctamente', 'Listo!');
+      }
+    );
+  }
+
+  GetUsuarios(): void {
+    this.usuarios.GetUsuarios().subscribe(
+      data => {
+        this.UsuariosData = data;
+      });
+  }
+
+  DeleteUsuario(usuario): void {
+    this.usuarios.DeleteUsuario(usuario).subscribe(
+      _ => {
+      },
+      _error => {
+        alert('Error');
+      },
+      () => {
+        this.GetUsuarios();
+        this.UsuarioForm.reset();
+        this.Message.success('Usuario Eliminado Correctamente', 'Listo!');
+      }
+    );
   }
 
 }
