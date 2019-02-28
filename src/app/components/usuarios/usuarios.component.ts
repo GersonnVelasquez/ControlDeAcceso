@@ -76,8 +76,8 @@ export class UsuariosComponent implements OnInit {
       'usuario1': this.UsuarioForm.controls['Usuario'].value,
       'contrasena': this.UsuarioForm.controls['Password'].value,
       'correo': this.UsuarioForm.controls['Correo'].value,
-      'id_rol': 0,
-      'id_empresa': 0
+      'id_rol': this.UsuarioForm.controls['Rol'].value,
+      'id_empresa': this.UsuarioForm.controls['Empresa'].value
     };
 
     this.usuarios.AddUsuario(Usuario).subscribe(

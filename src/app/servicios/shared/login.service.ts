@@ -23,6 +23,7 @@ export class LoginService {
     const apiURL = `${this.apiRoot}api/Login/${User}/${Pass}`;
     // this._login = true;
     this.http.get(apiURL).subscribe((data: boolean) => {
+      console.log(data);
       if (data === true) {
         this._login = data;
         this.router.navigate(['/inicio']);
