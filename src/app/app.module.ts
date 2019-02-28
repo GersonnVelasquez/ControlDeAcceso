@@ -16,6 +16,10 @@ import { FilterPipe } from './customPipes/filter/filter.pipe';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
+// alertas
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +34,12 @@ import { HttpClientModule } from '@angular/common/http';
     FilterPipe
   ],
   imports: [
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
