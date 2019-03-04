@@ -1,0 +1,197 @@
+<div class="container-fluid">
+
+  <div class="card">
+    <h5 class="card-header">Informacion General</h5>
+    <div class="card-body">
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="TipoVisita">Tipo Visita:</label>
+            <select id="TipoVisita" class="form-control">
+              <option selected>Tipo...</option>
+              <option>...</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="Empresa">Empresa:</label>
+            <input id="Empresa" list="datos" class="custom-select">
+            <datalist id="datos">
+              <option value="">1</option>
+              <option value="">2</option>
+              <option value="">3</option>
+            </datalist>
+            <small id="EmpresaInfo" class="form-text text-muted">Si la visita es personal dejar en blanco.</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-row">
+              <div class="form-group col-sm-6">
+                <label for="Fecha">Fecha Programada:</label>
+                <input type="date" class="form-control" id="Fecha">
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="Hora">Hora:</label>
+                <input type="time" class="form-control" id="Hora">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Descripcion">Descripcion:</label>
+              <textarea class="form-control" id="Descripcion" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <label>Opciones Adicionales:</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="PermisoTrabajo">
+              <label class="form-check-label" for="PermisoTrabajo">
+                Permiso de Trabajo
+              </label>
+            </div>
+            <div class="form-group">
+              <button type="button" class="mt-5 ml-2 btn btn-primary btn-lg" data-toggle="modal"
+                data-target="#AddPersonasModal"><i class="ico fas fa-user-plus"></i>Personas</button>
+              <button type="button" class="mt-5 ml-2 btn btn-secondary btn-lg" data-toggle="modal"
+                data-target="#AddObjetosModal"><i class="ico fas fa-tools"></i>Objetos</button>
+              <button type="button" class="mt-5 ml-2 btn btn-success btn-lg"><i
+                  class="ico far fa-save"></i>Guardar</button>
+            </div>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="mt-2 card">
+        <div class="card-header">
+          Personas en Visita
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">No. Identidad</th>
+                <th scope="col">Nombre Completo</th>
+                <th scope="col">Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>010101010101</td>
+                <td>Otto</td>
+                <td>
+                  <div class="btn-group m-100">
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    <button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>2233410191</td>
+                <td>Thornton</td>
+                <td>
+                  <div class="btn-group m-100">
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    <button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>123423424235</td>
+                <td>the Bird</td>
+                <td>
+                  <div class="btn-group m-100">
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    <button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="mt-2 card">
+        <div class="card-header">
+         Objetos
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Pala</td>
+                <td>2</td>
+                <td>
+                  <div class="btn-group m-100">
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    <button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
+                  </div>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <!-- Modal Personas -->
+  <div class="modal fade" id="AddPersonasModal" tabindex="-1" role="dialog" aria-labelledby="AddPersonasModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="AddPersonasModalTitle">Agregar Nueva Persona</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-agregarpersona></app-agregarpersona>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal Objetos -->
+  <div class="modal fade" id="AddObjetosModal" tabindex="-1" role="dialog" aria-labelledby="AddObjetosModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="AddObjetosModalTitle">Agregar Nuevo Objeto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-agregarobjetos></app-agregarobjetos>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
