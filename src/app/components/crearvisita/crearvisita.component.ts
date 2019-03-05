@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrearvisitaComponent implements OnInit {
 
+  PersonasVisita = [];
+
   constructor() { }
 
   ngOnInit() {
   }
 
+   AgregarPersona(): void{
+
+  }
+  
+  AgregarObjeto(): void{
+
+  }
 }
