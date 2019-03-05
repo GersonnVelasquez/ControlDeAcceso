@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crearvisita',
@@ -9,16 +10,17 @@ export class CrearvisitaComponent implements OnInit {
 
   PersonasVisita = [];
 
-  constructor() { }
+  constructor(private Message: ToastrService) { }
 
   ngOnInit() {
   }
 
-   AgregarPersona(): void{
-
+   AgregarPersona(personaVisita): void {
+     this.PersonasVisita.push(personaVisita);
+    this.Message.success('Persona Agregada a Visita', 'Listo');
   }
-  
-  AgregarObjeto(): void{
+
+  AgregarObjeto(): void {
 
   }
 }

@@ -53,7 +53,8 @@
           <div class="form-group col-md-6">
             <label for="Vehiculos">Vehiculos:</label>
             <textarea class="form-control" id="Vehiculos" rows="2"></textarea>
-            <small id="VehiuloInfo" class="form-text text-muted">Ingrese las placas de los vehiculos separados por un enter.</small>
+            <small id="VehiuloInfo" class="form-text text-muted">Ingrese las placas de los vehiculos separados por un
+              enter.</small>
           </div>
         </div>
 
@@ -69,7 +70,11 @@
   </div>
 
 
+
+
+
   <div class="row">
+
     <div class="col-md-6">
       <div class="mt-2 card">
         <div class="card-header">
@@ -85,27 +90,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>010101010101</td>
-                <td>Otto</td>
-                <td>
-                  <div class="btn-group m-100">
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>2233410191</td>
-                <td>Thornton</td>
-                <td>
-                  <div class="btn-group m-100">
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>123423424235</td>
-                <td>the Bird</td>
+              <tr *ngFor="let Visita of PersonasVisita">
+                <td>{{Visita.n_identidad}}</td>
+                <td>{{Visita.nombre}}</td>
                 <td>
                   <div class="btn-group m-100">
                     <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
@@ -114,9 +101,11 @@
               </tr>
             </tbody>
           </table>
+
         </div>
       </div>
     </div>
+    
     <div class="col-md-6">
       <div class="mt-2 card">
         <div class="card-header">
@@ -154,45 +143,47 @@
 
 
 
+</div>
 
 
-  <!-- Modal Personas -->
-  <div class="modal fade" id="AddPersonasModal" tabindex="-1" role="dialog" aria-labelledby="AddPersonasModalTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="AddPersonasModalTitle">Agregar Nueva Persona</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <app-agregarpersona></app-agregarpersona>
-        </div>
+
+
+
+
+
+<!-- Modal Personas -->
+<div class="modal fade" id="AddPersonasModal" tabindex="-1" role="dialog" aria-labelledby="AddPersonasModalTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AddPersonasModalTitle">Agregar Nueva Persona</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-agregarpersona (OnAdd)="AgregarPersona($event)"></app-agregarpersona>
       </div>
     </div>
   </div>
+</div>
 
 
-  <!-- Modal Objetos -->
-  <div class="modal fade" id="AddObjetosModal" tabindex="-1" role="dialog" aria-labelledby="AddObjetosModalTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="AddObjetosModalTitle">Agregar Nuevo Objeto</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <app-agregarobjetos></app-agregarobjetos>
-        </div>
+<!-- Modal Objetos -->
+<div class="modal fade" id="AddObjetosModal" tabindex="-1" role="dialog" aria-labelledby="AddObjetosModalTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AddObjetosModalTitle">Agregar Nuevo Objeto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-agregarobjetos></app-agregarobjetos>
       </div>
     </div>
   </div>
-
-
-
 </div>

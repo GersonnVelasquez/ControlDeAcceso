@@ -6,24 +6,61 @@
 <form [formGroup]="PersonasForm" (ngSubmit)="AddPersona()" autocomplete="off" novalidate>
   <div class="form-group">
     <label for="NoIdentidad">No. Identidad:</label>
-    <input  formControlName="NoIdentidad" id="NoIdentidad" list="Personas" class="custom-select" (change)="SetData(p)">
+    <input formControlName="NoIdentidad" id="NoIdentidad" #Identidad list="Personas" class="custom-select"
+      placeholder="0102-1993-12234" (change)="SetData(Identidad.value)"
+      [ngClass]="{ 'is-invalid': PersonasForm.get('NoIdentidad').invalid && (PersonasForm.get('NoIdentidad').dirty || PersonasForm.get('NoIdentidad').touched),
+      'is-valid': PersonasForm.get('NoIdentidad').valid && (PersonasForm.get('NoIdentidad').dirty || PersonasForm.get('NoIdentidad').touched)}">
+    <div class="invalid-feedback"
+      *ngIf="PersonasForm.controls['NoIdentidad'].errors?.required && (PersonasForm.get('NoIdentidad').dirty || PersonasForm.get('NoIdentidad').touched)">
+      Campo Requerido.
+    </div>
+    <div class="invalid-feedback"
+      *ngIf="PersonasForm.controls['NoIdentidad'].errors?.minlength && (PersonasForm.get('NoIdentidad').dirty || PersonasForm.get('NoIdentidad').touched)">
+      Debe tener al menos 15 digitos usando separadores "-".
+    </div>
     <datalist id="Personas">
       <option *ngFor="let p of Personas" value="{{p.n_identidad}}">{{p.n_identidad}}</option>
     </datalist>
   </div>
   <div class="form-group">
     <label for="Nombre">Nombre Completo:</label>
-    <input  formControlName="Nombre" type="text" class="form-control" id="Nombre">
+    <input formControlName="Nombre" type="text" class="form-control" id="Nombre"
+      [ngClass]="{ 'is-invalid': PersonasForm.get('Nombre').invalid && (PersonasForm.get('Nombre').dirty || PersonasForm.get('Nombre').touched),
+              'is-valid': PersonasForm.get('Nombre').valid && (PersonasForm.get('Nombre').dirty || PersonasForm.get('Nombre').touched)}">
+    <div class="invalid-feedback"
+      *ngIf="PersonasForm.controls['Nombre'].errors?.required && (PersonasForm.get('Nombre').dirty || PersonasForm.get('Nombre').touched)">
+      Campo Requerido.
+    </div>
   </div>
   <div class="form-group">
     <label for="Correo">Correo:</label>
-    <input  formControlName="Correo" type="email" class="form-control" id="Correo">
+    <input formControlName="Correo" type="email" class="form-control" id="Correo" placeholder="Usuario@empresa.com"
+      [ngClass]="{ 'is-invalid': PersonasForm.get('Correo').invalid && (PersonasForm.get('Correo').dirty || PersonasForm.get('Correo').touched),
+              'is-valid': PersonasForm.get('Correo').valid && (PersonasForm.get('Correo').dirty || PersonasForm.get('Correo').touched)}">
+    <div class="invalid-feedback"
+      *ngIf="PersonasForm.controls['Correo'].errors?.required && (PersonasForm.get('Correo').dirty || PersonasForm.get('Correo').touched)">
+      Campo Requerido.
+    </div>
+    <div class="invalid-feedback"
+      *ngIf="PersonasForm.controls['Correo'].errors?.pattern && (PersonasForm.get('Correo').dirty || PersonasForm.get('Correo').touched)">
+      El Correo no tiene un formato valido.
+    </div>
   </div>
   <div class="form-group">
     <label for="Telefono">No. Telefono:</label>
-    <input  formControlName="Telefono" type="text" class="form-control" id="Telefono">
+    <input formControlName="Telefono" type="text" class="form-control" id="Telefono" placeholder="31233445"
+      [ngClass]="{ 'is-invalid': PersonasForm.get('Telefono').invalid && (PersonasForm.get('Telefono').dirty || PersonasForm.get('Telefono').touched),
+    'is-valid': PersonasForm.get('Telefono').valid && (PersonasForm.get('Telefono').dirty || PersonasForm.get('Telefono').touched)}">
+    <div class="invalid-feedback"
+      *ngIf="PersonasForm.controls['Telefono'].errors?.required && (PersonasForm.get('Telefono').dirty || PersonasForm.get('Telefono').touched)">
+      Campo Requerido.
+    </div>
+    <div class="invalid-feedback"
+      *ngIf="PersonasForm.controls['Telefono'].errors?.minlength && (PersonasForm.get('Telefono').dirty || PersonasForm.get('Telefono').touched)">
+      Debe tener al menos 8 digitos sin usar separadores tipo "-".
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary btn-lg" data-dismiss="modal">Agregar</button>
+  <button type="submit" class="btn btn-primary btn-lg" [disabled]="PersonasForm.invalid">Agregar</button>
 </form>
 <!-- </div>
 </div> -->

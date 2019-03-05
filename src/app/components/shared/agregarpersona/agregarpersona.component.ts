@@ -15,35 +15,74 @@ export class AgregarpersonaComponent implements OnInit {
 
   @Output() OnAdd = new EventEmitter();
   constructor(private persona: PersonasService) {
-    this.Personas = persona.getPersonas();
-    console.log(this.Personas);
+    this.getPersonas();
   }
 
   ngOnInit() {
     this.PersonasForm = new FormGroup({
       'Nombre': new FormControl('', [Validators.required]),
-      'NoIdentidad': new FormControl('', [Validators.required]),
-      'Correo': new FormControl('', [Validators.required]),
-      'Telefono': new FormControl('', [Validators.required]),
+      'NoIdentidad': new FormControl('', [
+        Validators.required,
+        Validators.minLength(15)
+      ]),
+      'Correo': new FormControl('', [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
+      ]),
+      'Telefono': new FormControl('', [
+        Validators.required,
+        Validators.minLength(8)
+      ]),
     });
   }
 
+  getPersonas() {
+    this.Personas = this.persona.getPersonas();
+  }
+
   AddPersona() {
-    const personaNueva =
-    {
+    const personaNueva = {
       'id_persona': '5',
       'nombre': this.PersonasForm.controls['Nombre'].value,
       'n_identidad': this.PersonasForm.controls['NoIdentidad'].value,
       'correo': this.PersonasForm.controls['Correo'].value,
       'telefono': this.PersonasForm.controls['Telefono'].value
     };
-    this.persona.addPersona(personaNueva);
-    this.OnAdd.emit(personaNueva);
+
+    let index = 1;
+    for (const i of this.Personas) {
+      if (i.n_identidad === personaNueva.n_identidad) {
+        this.PersonasForm.reset();
+        this.OnAdd.emit(personaNueva);
+        break;
+      } else if (index === this.Personas.length) {
+        this.persona.addPersona(personaNueva); // Agregar nueva persona
+        this.PersonasForm.reset();
+        this.getPersonas();
+        this.OnAdd.emit(personaNueva);
+      }
+      index ++;
+    }
+
+
+
+
   }
 
-  SetData(DataPersona){
+  SetData(identidad) {
 
-    console.log(DataPersona);
+    for (const i of this.Personas) {
+      if (i.n_identidad === identidad) {
+        this.PersonasForm.controls['Nombre'].setValue(i.nombre);
+        this.PersonasForm.controls['Correo'].setValue(i.correo);
+        this.PersonasForm.controls['Telefono'].setValue(i.telefono);
+        break;
+      } else {
+        this.PersonasForm.controls['Nombre'].setValue('');
+        this.PersonasForm.controls['Correo'].setValue('');
+        this.PersonasForm.controls['Telefono'].setValue('');
+      }
+    }
   }
 
 
