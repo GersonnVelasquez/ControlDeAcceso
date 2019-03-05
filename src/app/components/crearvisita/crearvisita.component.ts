@@ -15,11 +15,15 @@ export class CrearvisitaComponent implements OnInit {
   ngOnInit() {
   }
 
-   AgregarPersona(personaVisita): void {
-     this.PersonasVisita.push(personaVisita);
-    this.Message.success('Persona Agregada a Visita', 'Listo');
-  }
+  AgregarPersona(personaVisita): void {
+    if (this.PersonasVisita.find(x => x.n_identidad === personaVisita.n_identidad) === undefined) {
+      this.PersonasVisita.push(personaVisita);
+      this.Message.success('Persona Agregada a Visita.', 'Listo');
+    } else {
+      this.Message.error('Persona ya esta en la lista.', 'Error');
+    }
 
+  }
   AgregarObjeto(): void {
 
   }
