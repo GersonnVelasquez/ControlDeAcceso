@@ -61,6 +61,7 @@ export class AgregarpersonaComponent implements OnInit {
         this.PersonasForm.reset();
         this.getPersonas();
         this.OnAdd.emit(personaNueva);
+        break;
       }
       index ++;
     }

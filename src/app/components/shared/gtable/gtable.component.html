@@ -13,7 +13,7 @@
       <thead class="thead-dark">
         <tr>
           <th style="cursor: pointer" (click)="SetOrder(Columna)" scope="col" *ngFor="let Columna of Columnas">
-            {{Columna}}
+            {{Columna.Nombre}}
             <span *ngIf="OrderColumn === Columna">
               <i *ngIf="Asc" style="cursor: pointer" class="fas fa-sort-amount-up"></i>
               <i *ngIf="!Asc" style="cursor: pointer" class="fas fa-sort-amount-down"></i>
@@ -26,7 +26,7 @@
         <tr
           *ngFor="let Data of Data | filter:searchText | sort: OrderColumn : Asc | slice:page === 1 ? 0 : ((page-1)*Ctd) : page === 1 ? (page*Ctd) : ((page-1)*Ctd) ++ Ctd">
           <td *ngFor="let Columna of Columnas">
-            {{Data[Columna]}}
+            {{Data[Columna.Value]}}
           </td> 
           <td *ngIf="Customize" style="max-width: 80px;">
             <div class="btn-group m-100">

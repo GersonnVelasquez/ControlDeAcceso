@@ -70,80 +70,17 @@
   </div>
 
 
-
-
-
-  <div class="row">
-
+  <div class="row mt-2">
     <div class="col-md-6">
-
-      <app-gtable [Data]="PersonasVisita" [Titulo]="'Personas anunciadas'" [Ignore]="['id_persona','correo','telefono']" [Delete]="true"
+      <app-gtable [ColumnasIn]="PersonasVisitasTable" [Data]="PersonasVisita"
+        [Titulo]="'Personas anunciadas'" [Delete]="true"
         (OnDelete)="EliminarPersona($event)">"></app-gtable>
-
-
-
-
-      <!-- <div class="mt-2 card">
-        <div class="card-header">
-          Personas en Visita
-        </div>
-        <div class="card-body">
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">No. Identidad</th>
-                <th scope="col">Nombre Completo</th>
-                <th scope="col">Accion</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let Visita of PersonasVisita">
-                <td>{{Visita.n_identidad}}</td>
-                <td>{{Visita.nombre}}</td>
-                <td>
-                  <div class="btn-group m-100">
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-        </div>
-      </div> -->
-
-
     </div>
 
     <div class="col-md-6">
-      <div class="mt-2 card">
-        <div class="card-header">
-          Objetos
-        </div>
-        <div class="card-body">
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col">Accion</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let Obj of Objetos">
-                <td>{{Obj.descripcion}}</td>
-                <td>{{Obj.cantidad}}</td>
-                <td>
-                  <div class="btn-group m-100">
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div>
-                </td>
-              </tr>
-
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <app-gtable [ColumnasIn]="ObjetosTable" [Data]="Objetos"
+        [Titulo]="'Objetos'" [Delete]="true"
+        (OnDelete)="EliminarObjeto($event)">"></app-gtable>
     </div>
   </div>
 
