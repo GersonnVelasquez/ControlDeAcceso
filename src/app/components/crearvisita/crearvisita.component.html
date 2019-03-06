@@ -76,7 +76,14 @@
   <div class="row">
 
     <div class="col-md-6">
-      <div class="mt-2 card">
+
+      <app-gtable [Data]="PersonasVisita" [Titulo]="'Personas anunciadas'" [Ignore]="['id_persona','correo','telefono']" [Delete]="true"
+        (OnDelete)="EliminarPersona($event)">"></app-gtable>
+
+
+
+
+      <!-- <div class="mt-2 card">
         <div class="card-header">
           Personas en Visita
         </div>
@@ -103,9 +110,11 @@
           </table>
 
         </div>
-      </div>
+      </div> -->
+
+
     </div>
-    
+
     <div class="col-md-6">
       <div class="mt-2 card">
         <div class="card-header">
@@ -121,9 +130,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Pala</td>
-                <td>2</td>
+              <tr *ngFor="let Obj of Objetos">
+                <td>{{Obj.descripcion}}</td>
+                <td>{{Obj.cantidad}}</td>
                 <td>
                   <div class="btn-group m-100">
                     <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
@@ -182,7 +191,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <app-agregarobjetos></app-agregarobjetos>
+        <app-agregarobjetos (OnAdd)="AgregarObjeto($event)"></app-agregarobjetos>
       </div>
     </div>
   </div>

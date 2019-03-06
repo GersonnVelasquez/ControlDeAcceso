@@ -14,6 +14,7 @@ export class AgregarpersonaComponent implements OnInit {
 
 
   @Output() OnAdd = new EventEmitter();
+
   constructor(private persona: PersonasService) {
     this.getPersonas();
   }

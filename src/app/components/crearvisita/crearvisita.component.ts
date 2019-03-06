@@ -9,11 +9,14 @@ import { ToastrService } from 'ngx-toastr';
 export class CrearvisitaComponent implements OnInit {
 
   PersonasVisita = [];
+  Objetos = [];
 
   constructor(private Message: ToastrService) { }
 
   ngOnInit() {
   }
+
+
 
   AgregarPersona(personaVisita): void {
     if (this.PersonasVisita.find(x => x.n_identidad === personaVisita.n_identidad) === undefined) {
@@ -24,7 +27,23 @@ export class CrearvisitaComponent implements OnInit {
     }
 
   }
-  AgregarObjeto(): void {
+  AgregarObjeto(objeto): void {
+    console.log(objeto);
+    if (this.Objetos.find(x => x.descripcion === objeto.descripcion) === undefined) {
+      this.Objetos.push(objeto);
+      this.Message.success('Ojeto Agregado a la lista.', 'Listo');
+    } else {
+      this.Message.error('Este ojeto ya esta en la lista.', 'Error');
+    }
+  }
+
+  EliminarPersona(personaVisita) {
+    this.PersonasVisita = this.PersonasVisita.find(x => x.n_identidad !== personaVisita.n_identidad);
+  }
+
+  EliminarObjeto(objeto) {
+    this.Objetos = this.Objetos.find(x => x.descripcion !== objeto.descripcion);
 
   }
+
 }
