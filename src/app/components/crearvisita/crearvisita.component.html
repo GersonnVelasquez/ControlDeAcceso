@@ -3,18 +3,18 @@
   <div class="card">
     <h5 class="card-header">Informacion General</h5>
     <div class="card-body">
-      <form>
+      <form [formGroup]="VisitasForm" (ngSubmit)="AgregarVisita()" autocomplete="off" novalidate>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="TipoVisita">Tipo Visita:</label>
-            <select id="TipoVisita" class="form-control">
+            <select id="TipoVisita" class="form-control" formControlName="TipoVisita">
               <option selected>Tipo...</option>
               <option>...</option>
             </select>
           </div>
           <div class="form-group col-md-6">
             <label for="Empresa">Empresa Procedencia:</label>
-            <input id="Empresa" list="datos" class="custom-select">
+            <input id="Empresa" list="datos" class="custom-select" formControlName="EmpresaProc">
             <datalist id="datos">
               <option value="">1</option>
               <option value="">2</option>
@@ -27,17 +27,17 @@
           <div class="form-row col-md-6">
             <div class="form-group col-md-6">
               <label for="Fecha">Fecha Programada:</label>
-              <input type="date" class="form-control" id="Fecha">
+              <input type="date" class="form-control" id="Fecha" formControlName="FechaProgramada">
             </div>
             <div class="form-group col-md-6">
               <label for="Hora">Hora:</label>
-              <input type="time" class="form-control" id="Hora">
+              <input type="time" class="form-control" id="Hora" formControlName="HoraProgramada">
             </div>
           </div>
           <div class="form-group col-md-6">
             <label>Opciones Adicionales:</label>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="PermisoTrabajo">
+              <input class="form-check-input" type="checkbox" id="PermisoTrabajo" formControlName="PermisoTrabajo">
               <label class="form-check-label" for="PermisoTrabajo">
                 Permiso de Trabajo
               </label>
@@ -48,11 +48,11 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="Descripcion">Descripcion:</label>
-            <textarea class="form-control" id="Descripcion" rows="2"></textarea>
+            <textarea class="form-control" id="Descripcion" rows="2" formControlName="Descripcion"></textarea>
           </div>
           <div class="form-group col-md-6">
             <label for="Vehiculos">Vehiculos:</label>
-            <textarea class="form-control" id="Vehiculos" rows="2"></textarea>
+            <textarea class="form-control" id="Vehiculos" rows="2" formControlName="Vehiculos"></textarea>
             <small id="VehiuloInfo" class="form-text text-muted">Ingrese las placas de los vehiculos separados por un
               enter.</small>
           </div>
@@ -63,31 +63,23 @@
             data-target="#AddPersonasModal"><i class="ico fas fa-user-plus"></i>Personas</button>
           <button type="button" class="ml-2 btn btn-secondary btn-lg" data-toggle="modal"
             data-target="#AddObjetosModal"><i class="ico fas fa-tools"></i>Objetos</button>
-          <button type="button" class="ml-2 btn btn-success btn-lg"><i class="ico far fa-save"></i>Guardar</button>
+          <button type="submit" class="ml-2 btn btn-success btn-lg" [disabled]="VisitasForm.invalid"><i class="ico far fa-save"></i>Guardar</button>
         </div>
       </form>
     </div>
   </div>
 
-
   <div class="row mt-2">
     <div class="col-md-6">
-      <app-gtable [ColumnasIn]="PersonasVisitasTable" [Data]="PersonasVisita"
-        [Titulo]="'Personas anunciadas'" [Delete]="true"
-        (OnDelete)="EliminarPersona($event)">"></app-gtable>
+      <app-gtable [ColumnasIn]="PersonasVisitasTable" [Data]="PersonasVisita" [Titulo]="'Personas Anunciadas'"
+        [Delete]="true" (OnDelete)="EliminarPersona($event)">"></app-gtable>
     </div>
 
     <div class="col-md-6">
-      <app-gtable [ColumnasIn]="ObjetosTable" [Data]="Objetos"
-        [Titulo]="'Objetos'" [Delete]="true"
+      <app-gtable [ColumnasIn]="ObjetosTable" [Data]="Objetos" [Titulo]="'Objetos'" [Delete]="true"
         (OnDelete)="EliminarObjeto($event)">"></app-gtable>
     </div>
   </div>
-
-
-
-
-
 
 </div>
 
