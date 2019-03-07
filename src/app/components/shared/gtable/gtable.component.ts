@@ -36,7 +36,7 @@ export class GtableComponent implements OnChanges, OnInit {
       if (!!this.ColumnasIn[0]) {
 
         this.Columnas = this.ColumnasIn;
-        this.OrderColumn = this.Columnas[0];
+        this.OrderColumn = this.Columnas[0].Value;
       } else {
         for (const item of Object.getOwnPropertyNames(this.Data[0]).filter(col => !this.Ignore.includes(col))) {
           this.Columnas.push({
@@ -44,7 +44,7 @@ export class GtableComponent implements OnChanges, OnInit {
             'Value': item
           });
       }
-        this.OrderColumn = this.Columnas[0];
+        this.OrderColumn = this.Columnas[0].Value;
       }
     }
   }

@@ -82,6 +82,8 @@ export class CrearvisitaComponent implements OnInit {
 
   AgregarVisita() {
     this.VisitasForm.reset();
+    this.PersonasVisita  = [];
+    this.Objetos = [];
 
   }
 }

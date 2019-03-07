@@ -12,9 +12,9 @@
     <table id="table_id" class="table table-striped">
       <thead class="thead-dark">
         <tr>
-          <th style="cursor: pointer" (click)="SetOrder(Columna)" scope="col" *ngFor="let Columna of Columnas">
+          <th style="cursor: pointer" (click)="SetOrder(Columna.Value)" scope="col" *ngFor="let Columna of Columnas">
             {{Columna.Nombre}}
-            <span *ngIf="OrderColumn === Columna">
+            <span *ngIf="OrderColumn === Columna.Value">
               <i *ngIf="Asc" style="cursor: pointer" class="fas fa-sort-amount-up"></i>
               <i *ngIf="!Asc" style="cursor: pointer" class="fas fa-sort-amount-down"></i>
             </span>
