@@ -38,6 +38,7 @@ export class GtableComponent implements OnChanges, OnInit {
         this.Columnas = this.ColumnasIn;
         this.OrderColumn = this.Columnas[0].Value;
       } else {
+        this.Columnas = [];
         for (const item of Object.getOwnPropertyNames(this.Data[0]).filter(col => !this.Ignore.includes(col))) {
           this.Columnas.push({
             'Nombre': item,

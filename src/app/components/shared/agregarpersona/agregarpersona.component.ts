@@ -11,7 +11,8 @@ export class AgregarpersonaComponent implements OnInit {
 
   Personas = [];
   PersonasForm: FormGroup;
-
+  id_persona: number;
+  personaNueva;
 
   @Output() OnAdd = new EventEmitter();
 
@@ -24,7 +25,8 @@ export class AgregarpersonaComponent implements OnInit {
       'Nombre': new FormControl('', [Validators.required]),
       'NoIdentidad': new FormControl('', [
         Validators.required,
-        Validators.minLength(15)
+        Validators.minLength(15),
+        Validators.maxLength(15)
       ]),
       'Correo': new FormControl('', [
         Validators.required,
@@ -45,8 +47,8 @@ export class AgregarpersonaComponent implements OnInit {
   }
 
   AddPersona() {
-    const personaNueva = {
-      'id_persona': '',
+    this.personaNueva = {
+      'id_persona': this.id_persona,
       'nombre': this.PersonasForm.controls['Nombre'].value,
       'n_identidad': this.PersonasForm.controls['NoIdentidad'].value,
       'correo': this.PersonasForm.controls['Correo'].value,
@@ -54,17 +56,17 @@ export class AgregarpersonaComponent implements OnInit {
     };
 
     if (this.Personas.length === 0) {
-      this.InsertPersona(personaNueva);
+      this.InsertPersona(this.personaNueva);
     }
 
     let index = 1;
     for (const i of this.Personas) {
-      if (i.n_identidad === personaNueva.n_identidad) {
+      if (i.n_identidad === this.personaNueva.n_identidad) {
         this.PersonasForm.reset();
-        this.OnAdd.emit(personaNueva);
+        this.OnAdd.emit(this.personaNueva);
         break;
       } else if (index === this.Personas.length) {
-        this.InsertPersona(personaNueva); // Agregar nueva persona
+        this.InsertPersona(this.personaNueva); // Agregar nueva persona
         break;
       }
       index++;
@@ -73,7 +75,14 @@ export class AgregarpersonaComponent implements OnInit {
 
   InsertPersona(personaNueva) {
     this.persona.addPersona(personaNueva).subscribe(
-      _ => {
+      (data: any ) => {
+        this.personaNueva = {
+          'id_persona': data.id_persona,
+          'nombre': data.nombre,
+          'n_identidad': data.n_identidad,
+          'correo': data.correo,
+          'telefono': data.telefono
+        };
       },
       _error => {
         alert('Error');
@@ -81,14 +90,14 @@ export class AgregarpersonaComponent implements OnInit {
       () => {
         this.PersonasForm.reset();
         this.getPersonas();
-        this.OnAdd.emit(personaNueva);
+        this.OnAdd.emit( this.personaNueva);
       });
   }
 
   SetData(identidad) {
-
     for (const i of this.Personas) {
       if (i.n_identidad === identidad) {
+        this.id_persona = i.id_persona;
         this.PersonasForm.controls['Nombre'].setValue(i.nombre);
         this.PersonasForm.controls['Correo'].setValue(i.correo);
         this.PersonasForm.controls['Telefono'].setValue(i.telefono);

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { VisitasService } from 'src/app/servicios/ControlVisitas/visitas.service';
+import { LoginService } from 'src/app/servicios/shared/login.service';
 
 @Component({
   selector: 'app-crearvisita',
@@ -36,7 +38,7 @@ export class CrearvisitaComponent implements OnInit {
       'Value': 'comentario'
     }];
 
-  constructor(private Message: ToastrService) { }
+  constructor(private Message: ToastrService, private visita: VisitasService, private login: LoginService) { }
 
   ngOnInit() {
     this.VisitasForm = new FormGroup({
@@ -81,9 +83,39 @@ export class CrearvisitaComponent implements OnInit {
 
 
   AgregarVisita() {
-    this.VisitasForm.reset();
-    this.PersonasVisita  = [];
-    this.Objetos = [];
+    const visita = {
+      'id_visita': '',
+      'tipo_visita': this.VisitasForm.controls['TipoVisita'].value,
+      'id_usuario': this.login.UsuarioActual.id_usuario,
+      'estado': '1',
+      'id_empresa': this.login.UsuarioActual.id_empresa,
+      'empresa_procedencia': this.VisitasForm.controls['EmpresaProc'].value,
+      'fecha_creacion': '',
+      'fecha_visita': this.VisitasForm.controls['FechaProgramada'].value,
+      'hora_visita': this.VisitasForm.controls['HoraProgramada'].value,
+      'id_permiso_trabajo': null,
+      'placa_vehiculo': this.VisitasForm.controls['Vehiculos'].value,
+      'descripcion': this.VisitasForm.controls['Descripcion'].value,
+    };
 
+    const nuevaVisita = {
+      'visita': visita,
+      'personas': this.PersonasVisita,
+      'objetos': this.Objetos
+    };
+
+    this.visita.addVisita(nuevaVisita).subscribe(
+      _ => {
+      },
+      _error => {
+        alert('Error');
+      },
+      () => {
+        this.VisitasForm.reset();
+        this.PersonasVisita = [];
+        this.Objetos = [];
+        this.Message.success('Visita Programada Correctamente', 'Listo!');
+      }
+    );
   }
 }
