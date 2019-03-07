@@ -6,7 +6,7 @@
   
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="login.isLogin()">
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['inicio']">
           <i class="fas fa-home"></i>

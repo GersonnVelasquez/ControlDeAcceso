@@ -1,36 +1,36 @@
-<div class="row">
-  <div class="col-4">
-    <div class="card">
-      <div class="card-header">
-        Ingresar Nueva Empresa
-      </div>
-      <div class="card-body">
-        <form [formGroup]="EmpresasForm" (ngSubmit)="AgregarEmpresa()" autocomplete="off" novalidate>
-          <div class="form-group">
-            <label for="NombreEmpresa">Nombre Empresa:</label>
-            <input type="text" class="form-control" id="NombreEmpresa" aria-describedby="NombreEmpresa"
-              placeholder="Ejem: Corporacion Mendoza" formControlName="NombreEmpresa"
-              [ngClass]="{ 'is-invalid': EmpresasForm.get('NombreEmpresa').invalid && (EmpresasForm.get('NombreEmpresa').dirty || EmpresasForm.get('NombreEmpresa').touched),
-                                  'is-valid': EmpresasForm.get('NombreEmpresa').valid && (EmpresasForm.get('NombreEmpresa').dirty || EmpresasForm.get('NombreEmpresa').touched)}">
-            <div class="invalid-feedback"
-              *ngIf="EmpresasForm.controls['NombreEmpresa'].errors?.required && (EmpresasForm.get('NombreEmpresa').dirty || EmpresasForm.get('NombreEmpresa').touched)">
-              Campo Requerido.
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">
+          Ingresar Nueva Empresa
+        </div>
+        <div class="card-body">
+          <form [formGroup]="EmpresasForm" (ngSubmit)="AgregarEmpresa()" autocomplete="off" novalidate>
+            <div class="form-group">
+              <label for="NombreEmpresa">Nombre Empresa:</label>
+              <input type="text" class="form-control" id="NombreEmpresa" aria-describedby="NombreEmpresa"
+                placeholder="Ejem: Corporacion Mendoza" formControlName="NombreEmpresa"
+                [ngClass]="{ 'is-invalid': EmpresasForm.get('NombreEmpresa').invalid && (EmpresasForm.get('NombreEmpresa').dirty || EmpresasForm.get('NombreEmpresa').touched),
+                                        'is-valid': EmpresasForm.get('NombreEmpresa').valid && (EmpresasForm.get('NombreEmpresa').dirty || EmpresasForm.get('NombreEmpresa').touched)}">
+              <div class="invalid-feedback"
+                *ngIf="EmpresasForm.controls['NombreEmpresa'].errors?.required && (EmpresasForm.get('NombreEmpresa').dirty || EmpresasForm.get('NombreEmpresa').touched)">
+                Campo Requerido.
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="Logo">Importar Logo:</label>
-            <input type="file" class="form-control-file" id="Logo" aria-describedby="Logo" formControlName="Logo">
-          </div>
-          <button type="submit" class="btn btn-primary" [disabled]="EmpresasForm.invalid">Agregar</button>
-        </form>
+            <div class="form-group">
+              <label for="Logo">Importar Logo:</label>
+              <input type="file" class="form-control-file" id="Logo" aria-describedby="Logo" formControlName="Logo">
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="EmpresasForm.invalid">Agregar</button>
+          </form>
+        </div>
       </div>
     </div>
+    <div class="col-8">
+      <app-gtable [Data]="Empresas" [Titulo]="'Empresas'" [Ignore]="['id_empresa']" [Delete]="true"
+        (OnDelete)="DeleteEmpresa($event)">"></app-gtable>
+    </div>
   </div>
-  <div class="col-8">
-    <app-gtable   [Data]="Empresas" 
-                  [Titulo]="'Empresas'"
-                  [Ignore]= "['id_empresa']"
-                  [Delete]= "true"
-                  (OnDelete)="DeleteEmpresa($event)">"></app-gtable>
-  </div>
+
 </div>

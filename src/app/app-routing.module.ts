@@ -11,7 +11,7 @@ import { ConsultavisitasComponent } from './components/consultavisitas/consultav
 
 const routes: Routes = [
 
-  { path: '', component: CrearvisitaComponent},
+  { path: '', component: LoginComponent},
   { path: 'inicio', component: InicioComponent, canActivate: [AuthGuadService] },
   { path: 'login', component: LoginComponent},
   { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuadService] },
