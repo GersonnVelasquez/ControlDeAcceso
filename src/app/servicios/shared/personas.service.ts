@@ -1,42 +1,25 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonasService {
 
-  personas = [
-    {
-      'id_persona': '1',
-      'nombre': 'Gersonn',
-      'n_identidad': '0105-2323-11',
-      'correo': 'asd@dsd.com',
-      'telefono': '12323'
-    },
-    {
-      'id_persona': '2',
-      'nombre': 'Maria',
-      'n_identidad': '123123-123123-123',
-      'correo': 'dqwew@asds.com',
-      'telefono': '344343'
-    },
-    {
-      'id_persona': '3',
-      'nombre': 'Pedro',
-      'n_identidad': '11233-23223-123123',
-      'correo': 'asdasd@dasd.com ',
-      'telefono': '1231231231'
-    },
+  apiRoot = 'http://localhost:57384/';
 
-  ];
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getPersonas() {
-    return this.personas;
+    const apiURL = `${this.apiRoot}api/Persona/select/`;
+    return this.http.get(apiURL);
   }
 
   addPersona(Persona) {
-      this.personas.push(Persona);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+    const apiURL = `${this.apiRoot}api/Persona/insert/`;
+    return this.http.post(apiURL, Persona, {headers: headers});
   }
 
 }

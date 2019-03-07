@@ -38,17 +38,24 @@ export class AgregarpersonaComponent implements OnInit {
   }
 
   getPersonas() {
-    this.Personas = this.persona.getPersonas();
+    this.persona.getPersonas().subscribe(
+      (data: any) => {
+        this.Personas = data;
+      });
   }
 
   AddPersona() {
     const personaNueva = {
-      'id_persona': '5',
+      'id_persona': '',
       'nombre': this.PersonasForm.controls['Nombre'].value,
       'n_identidad': this.PersonasForm.controls['NoIdentidad'].value,
       'correo': this.PersonasForm.controls['Correo'].value,
       'telefono': this.PersonasForm.controls['Telefono'].value
     };
+
+    if (this.Personas.length === 0) {
+      this.InsertPersona(personaNueva);
+    }
 
     let index = 1;
     for (const i of this.Personas) {
@@ -57,18 +64,25 @@ export class AgregarpersonaComponent implements OnInit {
         this.OnAdd.emit(personaNueva);
         break;
       } else if (index === this.Personas.length) {
-        this.persona.addPersona(personaNueva); // Agregar nueva persona
+        this.InsertPersona(personaNueva); // Agregar nueva persona
+        break;
+      }
+      index++;
+    }
+  }
+
+  InsertPersona(personaNueva) {
+    this.persona.addPersona(personaNueva).subscribe(
+      _ => {
+      },
+      _error => {
+        alert('Error');
+      },
+      () => {
         this.PersonasForm.reset();
         this.getPersonas();
         this.OnAdd.emit(personaNueva);
-        break;
-      }
-      index ++;
-    }
-
-
-
-
+      });
   }
 
   SetData(identidad) {
