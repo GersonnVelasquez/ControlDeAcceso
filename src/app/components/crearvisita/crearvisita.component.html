@@ -1,0 +1,151 @@
+<div class="container-fluid">
+
+  <div class="card">
+    <h5 class="card-header">Informacion General</h5>
+    <div class="card-body">
+      <form [formGroup]="VisitasForm" (ngSubmit)="AgregarVisita()" autocomplete="off" novalidate>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="TipoVisita">Tipo Visita:</label>
+            <select id="TipoVisita" class="form-control" formControlName="TipoVisita"
+            [ngClass]="{ 'is-invalid': VisitasForm.get('TipoVisita').invalid && (VisitasForm.get('TipoVisita').dirty || VisitasForm.get('TipoVisita').touched),
+            'is-valid': VisitasForm.get('TipoVisita').valid && (VisitasForm.get('TipoVisita').dirty || VisitasForm.get('TipoVisita').touched)}">
+              <option selected>Tipo...</option>
+              <option>...</option>
+            </select>
+            <div class="invalid-feedback"
+              *ngIf="VisitasForm.controls['TipoVisita'].errors?.required && (VisitasForm.get('TipoVisita').dirty || VisitasForm.get('TipoVisita').touched)">
+              Campo Requerido.
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="Empresa">Empresa Procedencia:</label>
+            <input id="Empresa" list="datos" class="custom-select" formControlName="EmpresaProc">
+            <datalist id="datos">
+              <option value="">1</option>
+              <option value="">2</option>
+              <option value="">3</option>
+            </datalist>
+            <small id="EmpresaInfo" class="form-text text-muted">Si la visita es personal dejar en blanco.</small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-row col-md-6">
+            <div class="form-group col-md-6">
+              <label for="Fecha">Fecha Programada:</label>
+              <input type="date" class="form-control" id="Fecha" formControlName="FechaProgramada"
+              [ngClass]="{ 'is-invalid': VisitasForm.get('FechaProgramada').invalid && (VisitasForm.get('FechaProgramada').dirty || VisitasForm.get('FechaProgramada').touched),
+              'is-valid': VisitasForm.get('FechaProgramada').valid && (VisitasForm.get('FechaProgramada').dirty || VisitasForm.get('FechaProgramada').touched)}">
+              <div class="invalid-feedback"
+                *ngIf="VisitasForm.controls['FechaProgramada'].errors?.required && (VisitasForm.get('FechaProgramada').dirty || VisitasForm.get('FechaProgramada').touched)">
+                Campo Requerido.
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="Hora">Hora:</label>
+              <input type="time" class="form-control" id="Hora" formControlName="HoraProgramada"
+              [ngClass]="{ 'is-invalid': VisitasForm.get('HoraProgramada').invalid && (VisitasForm.get('HoraProgramada').dirty || VisitasForm.get('HoraProgramada').touched),
+              'is-valid': VisitasForm.get('HoraProgramada').valid && (VisitasForm.get('HoraProgramada').dirty || VisitasForm.get('HoraProgramada').touched)}">
+              <div class="invalid-feedback"
+                *ngIf="VisitasForm.controls['HoraProgramada'].errors?.required && (VisitasForm.get('HoraProgramada').dirty || VisitasForm.get('HoraProgramada').touched)">
+                Campo Requerido.
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Opciones Adicionales:</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="PermisoTrabajo" formControlName="PermisoTrabajo">
+              <label class="form-check-label" for="PermisoTrabajo">
+                Permiso de Trabajo
+              </label>
+            </div>
+          </div>
+
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="Descripcion">Descripcion:</label>
+            <textarea class="form-control" id="Descripcion" rows="2" formControlName="Descripcion"  
+            [ngClass]="{ 'is-invalid': VisitasForm.get('Descripcion').invalid && (VisitasForm.get('Descripcion').dirty || VisitasForm.get('Descripcion').touched),
+            'is-valid': VisitasForm.get('Descripcion').valid && (VisitasForm.get('Descripcion').dirty || VisitasForm.get('Descripcion').touched)}"></textarea>
+            <div class="invalid-feedback"
+              *ngIf="VisitasForm.controls['Descripcion'].errors?.required && (VisitasForm.get('Descripcion').dirty || VisitasForm.get('Descripcion').touched)">
+              Campo Requerido.
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="Vehiculos">Vehiculos:</label>
+            <textarea class="form-control" id="Vehiculos" rows="2" formControlName="Vehiculos"></textarea>
+            <small id="VehiuloInfo" class="form-text text-muted">Ingrese las placas de los vehiculos separados por un
+              enter.</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="button" class="ml-2 btn btn-primary btn-lg" data-toggle="modal"
+            data-target="#AddPersonasModal"><i class="ico fas fa-user-plus"></i>Personas</button>
+          <button type="button" class="ml-2 btn btn-secondary btn-lg" data-toggle="modal"
+            data-target="#AddObjetosModal"><i class="ico fas fa-tools"></i>Objetos</button>
+          <button type="submit" class="ml-2 btn btn-success btn-lg" [disabled]="VisitasForm.invalid"><i
+              class="ico far fa-save"></i>Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-6">
+      <app-gtable [ColumnasIn]="PersonasVisitasTable" [Data]="PersonasVisita" [Titulo]="'Personas Anunciadas'"
+        [Delete]="true" (OnDelete)="EliminarPersona($event)">"></app-gtable>
+    </div>
+
+    <div class="col-md-6">
+      <app-gtable [ColumnasIn]="ObjetosTable" [Data]="Objetos" [Titulo]="'Objetos'" [Delete]="true"
+        (OnDelete)="EliminarObjeto($event)">"></app-gtable>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- Modal Personas -->
+<div class="modal fade" id="AddPersonasModal" tabindex="-1" role="dialog" aria-labelledby="AddPersonasModalTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AddPersonasModalTitle">Agregar Nueva Persona</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-agregarpersona (OnAdd)="AgregarPersona($event)"></app-agregarpersona>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Objetos -->
+<div class="modal fade" id="AddObjetosModal" tabindex="-1" role="dialog" aria-labelledby="AddObjetosModalTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AddObjetosModalTitle">Agregar Nuevo Objeto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-agregarobjetos (OnAdd)="AgregarObjeto($event)"></app-agregarobjetos>
+      </div>
+    </div>
+  </div>
+</div>

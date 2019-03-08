@@ -19,6 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
 // alertas
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CrearvisitaComponent } from './components/crearvisita/crearvisita.component';
+import { ConsultavisitasComponent } from './components/consultavisitas/consultavisitas.component';
+import { AgregarpersonaComponent } from './components/shared/agregarpersona/agregarpersona.component';
+import { AgregarobjetosComponent } from './components/shared/agregarobjetos/agregarobjetos.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { ToastrModule } from 'ngx-toastr';
     EmpresasComponent,
     GtableComponent,
     SortPipe,
-    FilterPipe
+    FilterPipe,
+    CrearvisitaComponent,
+    ConsultavisitasComponent,
+    AgregarpersonaComponent,
+    AgregarobjetosComponent
   ],
   imports: [
     BrowserAnimationsModule,

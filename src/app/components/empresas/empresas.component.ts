@@ -10,6 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EmpresasComponent implements OnInit {
 
+  Logo: File;
+
   Empresas = [];
   EmpresasForm: FormGroup;
 
@@ -23,13 +25,18 @@ export class EmpresasComponent implements OnInit {
     });
   }
 
+
+  imageUpload(e) {
+     this.Logo = e.target.files[0];
+  }
+
+
   AgregarEmpresa(): void {
     const Empresa = {
       'id_empresa': '',
       'nombre': this.EmpresasForm.controls['NombreEmpresa'].value,
-      'logo': null
+      'logo': this.Logo
     };
-
     this.empresas.AddEmpresas(Empresa).subscribe(
       _ => {
       },

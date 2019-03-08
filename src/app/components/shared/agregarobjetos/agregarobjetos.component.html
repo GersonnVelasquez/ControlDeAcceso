@@ -1,0 +1,27 @@
+<form [formGroup]="ObjetosForm" (ngSubmit)="AgregarObjeto()" autocomplete="off" novalidate>
+  <div class="form-group">
+    <label for="Descripcion">Descripcion:</label>
+    <input type="text" class="form-control" id="Descripcion" formControlName="Descripcion"
+      [ngClass]="{ 'is-invalid': ObjetosForm.get('Descripcion').invalid && (ObjetosForm.get('Descripcion').dirty || ObjetosForm.get('Descripcion').touched),
+    'is-valid': ObjetosForm.get('Descripcion').valid && (ObjetosForm.get('Descripcion').dirty || ObjetosForm.get('Descripcion').touched)}">
+    <div class="invalid-feedback"
+      *ngIf="ObjetosForm.controls['Descripcion'].errors?.required && (ObjetosForm.get('Descripcion').dirty || ObjetosForm.get('Descripcion').touched)">
+      Campo Requerido.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Cantidad">Cantidad:</label>
+    <input type="number" class="form-control" id="Cantidad" formControlName="Cantidad"
+      [ngClass]="{ 'is-invalid': ObjetosForm.get('Cantidad').invalid && (ObjetosForm.get('Cantidad').dirty || ObjetosForm.get('Cantidad').touched),
+  'is-valid': ObjetosForm.get('Cantidad').valid && (ObjetosForm.get('Cantidad').dirty || ObjetosForm.get('Cantidad').touched)}">
+    <div class="invalid-feedback"
+      *ngIf="ObjetosForm.controls['Cantidad'].errors?.required && (ObjetosForm.get('Cantidad').dirty || ObjetosForm.get('Cantidad').touched)">
+      Campo Requerido.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Comentario">Comentario:</label>
+    <textarea class="form-control" id="Comentario" rows="2" formControlName="Comentario"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg" [disabled]="ObjetosForm.invalid">Agregar</button>
+</form>

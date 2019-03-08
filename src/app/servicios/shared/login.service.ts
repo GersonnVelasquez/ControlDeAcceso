@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginService {
 
   private _login = false;
+  public UsuarioActual;
 
   constructor(public router: Router, private http: HttpClient, private Message: ToastrService) { }
 
@@ -22,16 +23,15 @@ export class LoginService {
   public login (User: string, Pass: string) {
     const apiURL = `${this.apiRoot}api/Login/${User}/${Pass}`;
     // this._login = true;
-    this.http.get(apiURL).subscribe((data: boolean) => {
-      console.log(data);
-      if (data === true) {
+    this.http.get(apiURL).subscribe((data: any) => {
+      if (data === false) {
         this._login = data;
-        this.router.navigate(['/inicio']);
-      } else {
-        this._login = false;
         this.Message.error('Credenciales Invalidas', 'Error');
+      } else {
+        this._login = true;
+        this.UsuarioActual = data;
+        this.router.navigate(['/inicio']);
       }
-
     });
   }
 

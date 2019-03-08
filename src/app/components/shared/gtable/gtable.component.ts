@@ -1,17 +1,18 @@
-import { Component, OnInit, Input , OnChanges, Output , EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-gtable',
   templateUrl: './gtable.component.html',
   styleUrls: ['./gtable.component.css']
 })
-export class GtableComponent implements  OnChanges , OnInit  {
+export class GtableComponent implements OnChanges, OnInit {
 
   @Input() Data = [];
   @Input() Update = false;
   @Input() Delete = false;
   @Input() Customize = true;
   @Input() Ignore = [];
+  @Input() ColumnasIn = [];
   @Input() Titulo: string;
   @Output() OnDelete = new EventEmitter();
 
@@ -31,8 +32,21 @@ export class GtableComponent implements  OnChanges , OnInit  {
 
   ngOnChanges() {
     if (!!this.Data[0]) {
-      this.Columnas = Object.getOwnPropertyNames(this.Data[0]).filter( col => !this.Ignore.includes(col));
-      this.OrderColumn = this.Columnas[0];
+
+      if (!!this.ColumnasIn[0]) {
+
+        this.Columnas = this.ColumnasIn;
+        this.OrderColumn = this.Columnas[0].Value;
+      } else {
+        this.Columnas = [];
+        for (const item of Object.getOwnPropertyNames(this.Data[0]).filter(col => !this.Ignore.includes(col))) {
+          this.Columnas.push({
+            'Nombre': item,
+            'Value': item
+          });
+      }
+        this.OrderColumn = this.Columnas[0].Value;
+      }
     }
   }
 

@@ -12,9 +12,9 @@
     <table id="table_id" class="table table-striped">
       <thead class="thead-dark">
         <tr>
-          <th style="cursor: pointer" (click)="SetOrder(Columna)" scope="col" *ngFor="let Columna of Columnas">
-            {{Columna}}
-            <span *ngIf="OrderColumn === Columna">
+          <th style="cursor: pointer" (click)="SetOrder(Columna.Value)" scope="col" *ngFor="let Columna of Columnas">
+            {{Columna.Nombre}}
+            <span *ngIf="OrderColumn === Columna.Value">
               <i *ngIf="Asc" style="cursor: pointer" class="fas fa-sort-amount-up"></i>
               <i *ngIf="!Asc" style="cursor: pointer" class="fas fa-sort-amount-down"></i>
             </span>
@@ -26,12 +26,12 @@
         <tr
           *ngFor="let Data of Data | filter:searchText | sort: OrderColumn : Asc | slice:page === 1 ? 0 : ((page-1)*Ctd) : page === 1 ? (page*Ctd) : ((page-1)*Ctd) ++ Ctd">
           <td *ngFor="let Columna of Columnas">
-            {{Data[Columna]}}
+            {{Data[Columna.Value]}}
           </td> 
           <td *ngIf="Customize" style="max-width: 80px;">
             <div class="btn-group m-100">
               <button *ngIf="Delete" (click)="Eliminar(Data)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-              <button *ngIf="Update" (click)="Modificar(Data)"type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
+              <button *ngIf="Update" (click)="Modificar(Data)"type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>
             </div>
           </td>
         </tr>
