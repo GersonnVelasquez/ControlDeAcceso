@@ -18,4 +18,19 @@ export class VisitasService {
     return this.http.post(apiURL, Visita, { headers: headers });
   }
 
+  public GetVisitasbyEmpresa(id): Observable<any> {
+    const apiURL = `${this.apiRoot}api/Visita/select/empresaId/${id}`;
+    return this.http.get(apiURL);
+  }
+
+  public GetVisitasDetalle(idvisita): Observable<any> {
+    const apiURL = `${this.apiRoot}api/Visita_Detalle/select/idVisita/${idvisita}`;
+    return this.http.get(apiURL);
+  }
+
+  public DeleteVisita(idvisita): Observable<any> {
+    const apiURL = `${this.apiRoot}api/Visita/delete/${idvisita}`;
+    return this.http.delete(apiURL);
+  }
+
 }

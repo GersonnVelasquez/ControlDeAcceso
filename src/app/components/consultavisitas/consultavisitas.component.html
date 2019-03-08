@@ -1,3 +1,72 @@
-<p>
-  consultavisitas works!
-</p>
+<div class="container-fluid">
+
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">Visitas en espera</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Tipo Visita</th>
+            <th>Empresa Procedencia</th>
+            <th>Fecha/Hora Programada</th>
+            <th>Personas</th>
+            <th>Objetos</th>
+            <th>Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let visita of Visitas">
+            <td>{{visita.tipo_visita}}</td>
+            <td>{{visita.empresa_procedencia}}</td>
+            <td>{{visita.fecha_visita | date: 'dd/MM/yyyy'}}{{ ' '+visita.hora_visita  }}</td>
+            <td>
+              <button class="btn btn-info" type="button" (click)="verPersonas(visita.id_visita)" data-toggle="modal"
+                data-target="#PersonasModal">
+                <i class="fas fa-eye"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-info" type="button" (click)="verObjetos(visita.id_visita)" data-toggle="modal"
+                data-target="#ObjetosModal">
+                <i class="fas fa-eye"></i>
+              </button>
+            </td>
+            <td>
+              <button (click)="EliminarVisita(visita.id_visita)" type="button" class="btn btn-danger"><i
+                  class="fas fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal Personas -->
+  <div class="modal fade bd-example-modal-lg" id="PersonasModal" tabindex="-1" role="dialog"
+    aria-labelledby="PersonasModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <app-gtable class="mt-2" [Data]="Personas" [Titulo]="'Personal Esperado'" [Customize]="false"></app-gtable>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Objetos -->
+  <div class="modal fade bd-example-modal-lg" id="ObjetosModal" tabindex="-1" role="dialog"
+    aria-labelledby="ObjetosModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <app-gtable [Data]="Objetos" [Titulo]="'Objeto en Visita'" [Customize]="false"></app-gtable>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

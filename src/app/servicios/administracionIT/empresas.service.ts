@@ -19,12 +19,7 @@ export class EmpresasService {
   public AddEmpresas(Empresa: any): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     const apiURL = `${this.apiRoot}api/Empresas/insert/`;
-    const formData = new FormData();
-    formData.append(name, Empresa.logo, Empresa.logo.name);
-
-    Empresa.logo = formData;
-    console.log(Empresa);
-    return this.http.post(apiURL, Empresa);
+    return this.http.post(apiURL, Empresa, {headers: headers});
   }
 
   public DeleteEmpresas(Empresa): Observable<any> {
