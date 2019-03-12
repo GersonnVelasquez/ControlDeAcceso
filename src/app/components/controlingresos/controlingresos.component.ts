@@ -50,4 +50,9 @@ export class ControlingresosComponent implements OnInit {
     this.EmpresaSelected = true;
   }
 
+  OnUpdate() {
+    this.UpdatingVisit = false;
+    this.EmpresaSelected = true;
+  }
+
 }

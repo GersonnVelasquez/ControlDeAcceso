@@ -20,13 +20,19 @@
           </div>
 
           <form [formGroup]= "VisitasForm">
+              <div class="form-check">
+                  <input formControlName="isOk" class="form-check-input" type="checkbox" id="IsOk">
+                  <label class="form-check-label" for="IsOk">
+                    Marcar Como lista para Guardar.
+                  </label>
+                </div>
             <div class="form-check" *ngIf="visita.estado === 2">
-              <input formControlName="Isfinal" class="form-check-input" type="checkbox" value="" id="Isfinal">
+              <input formControlName="Isfinal" class="form-check-input" type="checkbox"  id="Isfinal">
               <label class="form-check-label" for="Isfinal">
                 Marcar Como Visita Terminanda.
               </label>
             </div>
-            <button type="button" (click)="UpdateVisitas()" class="btn btn-success btn-lg mt-2"><i
+            <button type="button" (click)="UpdateVisitas()" class="btn btn-success btn-lg mt-2" [disabled]="!VisitasForm.get('isOk').value"><i
                 class="ico far fa-save"></i>Guardar</button>
             <button type="button" (click)="Cancelar()" class="btn btn-danger btn-lg mt-2 ml-1"><i
                 class="ico fas fa-ban"></i>Cancelar</button>

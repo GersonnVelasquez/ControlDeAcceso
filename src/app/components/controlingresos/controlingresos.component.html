@@ -17,7 +17,7 @@
   </div>
 
   
-<app-update-visit [Entrada]="true" (OnCancel)="Cancelar()" [visita]="Visita" [NombreEmpresa]="Empresa.nombre" *ngIf="UpdatingVisit"></app-update-visit>
+<app-update-visit [Entrada]="true" (OnCancel)="Cancelar()" [visita]="Visita" (OnUpdate)="OnUpdate()" [NombreEmpresa]="Empresa.nombre" *ngIf="UpdatingVisit"></app-update-visit>
 
 </div>
 

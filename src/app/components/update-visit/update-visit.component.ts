@@ -27,7 +27,8 @@ export class UpdateVisitComponent implements OnChanges, OnInit {
   }
 ngOnInit() {
   this.VisitasForm = new FormGroup({
-    'Isfinal': new FormControl(false)
+    'Isfinal': new FormControl(false),
+    'isOk': new FormControl(false)
   });
 
 }
@@ -86,6 +87,8 @@ ngOnInit() {
     };
 
     this.update(visita);
+
+    this.OnUpdate.emit();
   }
 
   update(visita) {
