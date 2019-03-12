@@ -19,12 +19,8 @@ const routes: Routes = [
   { path: 'roles', component: RolesComponent, canActivate: [AuthGuadService] },
   { path: 'empresas', component: EmpresasComponent, canActivate: [AuthGuadService] },
   { path: 'crearvisita', component: CrearvisitaComponent, canActivate: [AuthGuadService] },
-  { path: 'consultavisitas', component: ConsultavisitasComponent },
-  {
-    path: 'controlIngresos',
-    component: ControlingresosComponent
-  }
-
+  { path: 'consultavisitas', component: ConsultavisitasComponent, canActivate: [AuthGuadService] },
+  { path: 'controlIngresos', component: ControlingresosComponent, canActivate: [AuthGuadService] }
 ];
 
 @NgModule({
