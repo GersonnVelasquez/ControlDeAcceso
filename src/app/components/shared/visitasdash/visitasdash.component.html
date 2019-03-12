@@ -1,6 +1,16 @@
-<div class="card">
+<div class="card text-center">
   <div class="card-header">
-    <h5 class="card-title">Visitas en espera</h5>
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item hand">
+        <a class="nav-link" [ngClass]="Espera ? 'active':''" (click)="SetInEspera()">En Espera</a>
+      </li>
+      <li class="nav-item hand">
+        <a class="nav-link" [ngClass]="EnCurso ? 'active':''" (click)="SetInCurso()">En Curso</a>
+      </li>
+      <li class="nav-item hand">
+        <a class="nav-link"[ngClass]="Finalizadas ? 'active':''" (click)="SetFinalizadas()">Finalizadas</a>
+      </li>
+    </ul>
   </div>
   <div class="card-body">
     <table class="table table-hover">
@@ -35,7 +45,7 @@
             <button *ngIf="isAdmin" (click)="EliminarVisita(visita.id_visita)" type="button" class="btn btn-danger"><i
                 class="fas fa-trash-alt"></i></button>
             <button *ngIf="isSecurityUser" (click)="updateVisit(visita)" type="button" class="btn btn-primary">
-                <i class="far fa-edit"></i></button>
+              <i class="far fa-edit"></i></button>
           </td>
         </tr>
       </tbody>
@@ -49,7 +59,8 @@
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <app-gtable class="mt-2" [Data]="Personas" [Titulo]="'Personal Esperado'" [Customize]="false"></app-gtable>
+        <app-gtable class="mt-2" [Data]="Personas" [Titulo]="'Personal Esperado'" [Ignore]="['IdVisitaDetalle']"
+          [Customize]="false"></app-gtable>
       </div>
     </div>
   </div>
@@ -61,7 +72,8 @@
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <app-gtable [Data]="Objetos" [Titulo]="'Objeto en Visita'" [Customize]="false"></app-gtable>
+        <app-gtable [Data]="Objetos" [Ignore]="['idObjeto']" [Titulo]="'Objeto en Visita'" [Customize]="false">
+        </app-gtable>
       </div>
     </div>
   </div>

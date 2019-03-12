@@ -18,6 +18,12 @@ export class VisitasService {
     return this.http.post(apiURL, Visita, { headers: headers });
   }
 
+  public UpdateVisita(Visita: any): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+    const apiURL = `${this.apiRoot}api/Visita/UpdateInfo/`;
+    return this.http.post(apiURL, Visita, { headers: headers });
+  }
+
   public GetVisitasbyEmpresa(id): Observable<any> {
     const apiURL = `${this.apiRoot}api/Visita/select/empresaId/${id}`;
     return this.http.get(apiURL);

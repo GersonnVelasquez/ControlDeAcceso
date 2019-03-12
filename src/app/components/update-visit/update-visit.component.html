@@ -19,10 +19,20 @@
             </div>
           </div>
 
-          
-            <button type="button" class="btn btn-success btn-lg mt-2"><i class="ico far fa-save"></i>Guardar</button>
-            <button type="button" (click)="Cancelar()" class="btn btn-danger btn-lg mt-2 ml-1"><i class="ico fas fa-ban"></i>Cancelar</button>
- 
+          <form [formGroup]= "VisitasForm">
+            <div class="form-check" *ngIf="visita.estado === 2">
+              <input formControlName="Isfinal" class="form-check-input" type="checkbox" value="" id="Isfinal">
+              <label class="form-check-label" for="Isfinal">
+                Marcar Como Visita Terminanda.
+              </label>
+            </div>
+            <button type="button" (click)="UpdateVisitas()" class="btn btn-success btn-lg mt-2"><i
+                class="ico far fa-save"></i>Guardar</button>
+            <button type="button" (click)="Cancelar()" class="btn btn-danger btn-lg mt-2 ml-1"><i
+                class="ico fas fa-ban"></i>Cancelar</button>
+          </form>
+
+
 
         </div>
       </div>
@@ -49,10 +59,14 @@
             <tbody>
               <tr *ngFor="let Per of Personas">
                 <td>{{Per.Nombre}}</td>
-                <td><input type="time" [(ngModel)]="Per.HoraEntrada" id="HoraEntrada" [value]="Per.HoraEntrada" class="form-control" [disabled]="!Entrada"></td>
-                <td><input type="time" [(ngModel)]="Per.HoraSalida" id="HoraSalida" [value]="Per.HoraSalida" class="form-control" [disabled]="!Salida"></td>
-                <td><input type="text" [(ngModel)]="Per.NoCarnet" id="NoCarnet" [value]="Per.NoCarnet" class="form-control"></td>
-                <td><input type="text" [(ngModel)]="Per.Observaciones" id="Observaciones" [value]="Per.Observaciones" class="form-control"></td>
+                <td><input type="time" [(ngModel)]="Per.HoraEntrada" id="HoraEntrada" [value]="Per.HoraEntrada"
+                    class="form-control" [disabled]="visita.estado === 2"></td>
+                <td><input type="time" [(ngModel)]="Per.HoraSalida" id="HoraSalida" [value]="Per.HoraSalida"
+                    class="form-control" [disabled]="visita.estado === 1"></td>
+                <td><input type="text" [disabled]="visita.estado === 2" [(ngModel)]="Per.NoCarnet" id="NoCarnet" [value]="Per.NoCarnet"
+                    class="form-control"></td>
+                <td><input type="text" [(ngModel)]="Per.Observaciones" id="Observaciones" [value]="Per.Observaciones"
+                    class="form-control"></td>
               </tr>
             </tbody>
           </table>
@@ -78,7 +92,8 @@
               <tr *ngFor="let ob of Objetos">
                 <td>{{ob.Descripcion}}</td>
                 <td>{{ob.Cantidad}}</td>
-                <td><input type="text" [(ngModel)]="Per.Comentario" id="Comentario" [value]="Per.Comentario" class="form-control"></td>
+                <td><input type="text" [(ngModel)]="ob.Comentario" id="Comentario" [value]="ob.Comentario"
+                    class="form-control"></td>
               </tr>
             </tbody>
           </table>

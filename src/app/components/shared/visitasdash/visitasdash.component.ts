@@ -16,9 +16,14 @@ export class VisitasdashComponent implements OnChanges {
   @Input() isSecurityUser = false;
   @Output() UpdateVisit = new EventEmitter();
 
+  DATA = [];
   Visitas = [];
   Personas = [];
   Objetos = [];
+
+  Espera = true;
+  EnCurso = false;
+  Finalizadas = false;
 
   constructor(private visitas: VisitasService, private login: LoginService, private objetos: ObjetosService) {
   }
@@ -31,10 +36,35 @@ export class VisitasdashComponent implements OnChanges {
 
   }
 
+  SetInEspera() {
+    this.Espera = true;
+    this.EnCurso = false;
+    this.Finalizadas = false;
+    this.Visitas = this.DATA.filter(i => i.estado === 1 );
+  }
+
+  SetInCurso() {
+    this.Espera = false;
+    this.EnCurso = true;
+    this.Finalizadas = false;
+    this.Visitas = this.DATA.filter(i => i.estado === 2 );
+  }
+
+  SetFinalizadas() {
+    this.Espera = false;
+    this.EnCurso = false;
+    this.Finalizadas = true;
+    this.Visitas = this.DATA.filter(i => i.estado === 3 );
+  }
+
+
+
   getVisitasbyEmpresas() {
     this.visitas.GetVisitasbyEmpresa(this.EmpresaId).subscribe(
       data => {
         this.Visitas = data;
+        this.DATA = data;
+        this.SetInEspera();
       });
   }
 
