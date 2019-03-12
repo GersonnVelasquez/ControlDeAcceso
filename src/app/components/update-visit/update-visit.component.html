@@ -1,0 +1,89 @@
+<div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Detalle</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <h6>Empresa:{{' '+ NombreEmpresa}}</h6>
+              <h6>Fecha Programada:{{' '+ visita.fecha_visita | date:'dd/MM/yyyy'  }}</h6>
+              <h6>Hora Programada:{{' '+ visita.hora_visita}}</h6>
+            </div>
+            <div class="col-6">
+              <h6>Tipo Visita:{{' '+ visita.tipo_visita}}</h6>
+              <h6>Vehiculos:{{' '+ visita.placa_vehiculo}}</h6>
+              <h6>Estado:{{' '+ visita.estado}}</h6>
+            </div>
+          </div>
+
+          
+            <button type="button" class="btn btn-success btn-lg mt-2"><i class="ico far fa-save"></i>Guardar</button>
+            <button type="button" (click)="Cancelar()" class="btn btn-danger btn-lg mt-2 ml-1"><i class="ico fas fa-ban"></i>Cancelar</button>
+ 
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Personas en Visita</h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>Nombre</th>
+                <th>Hora Entrada</th>
+                <th>Hora Salida</th>
+                <th>No. Carnet</th>
+                <th>Observaciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Per of Personas">
+                <td>{{Per.Nombre}}</td>
+                <td><input type="time" [(ngModel)]="Per.HoraEntrada" id="HoraEntrada" [value]="Per.HoraEntrada" class="form-control" [disabled]="!Entrada"></td>
+                <td><input type="time" [(ngModel)]="Per.HoraSalida" id="HoraSalida" [value]="Per.HoraSalida" class="form-control" [disabled]="!Salida"></td>
+                <td><input type="text" [(ngModel)]="Per.NoCarnet" id="NoCarnet" [value]="Per.NoCarnet" class="form-control"></td>
+                <td><input type="text" [(ngModel)]="Per.Observaciones" id="Observaciones" [value]="Per.Observaciones" class="form-control"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Objetos en Visita</h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>Descripcion</th>
+                <th>Cantidad</th>
+                <th>Comentario</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ob of Objetos">
+                <td>{{ob.Descripcion}}</td>
+                <td>{{ob.Cantidad}}</td>
+                <td><input type="text" [(ngModel)]="Per.Comentario" id="Comentario" [value]="Per.Comentario" class="form-control"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

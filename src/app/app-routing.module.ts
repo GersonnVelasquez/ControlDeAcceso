@@ -8,17 +8,22 @@ import { EmpresasComponent } from './components/empresas/empresas.component';
 import { AuthGuadService } from './servicios/shared/auth-guad.service';
 import { CrearvisitaComponent } from './components/crearvisita/crearvisita.component';
 import { ConsultavisitasComponent } from './components/consultavisitas/consultavisitas.component';
+import { ControlingresosComponent } from './components/controlingresos/controlingresos.component';
 
 const routes: Routes = [
 
-  { path: '', component: LoginComponent},
+  { path: '', component: LoginComponent },
   { path: 'inicio', component: InicioComponent, canActivate: [AuthGuadService] },
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
   { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuadService] },
   { path: 'roles', component: RolesComponent, canActivate: [AuthGuadService] },
   { path: 'empresas', component: EmpresasComponent, canActivate: [AuthGuadService] },
   { path: 'crearvisita', component: CrearvisitaComponent, canActivate: [AuthGuadService] },
-  { path: 'consultavisitas', component: ConsultavisitasComponent, canActivate: [AuthGuadService] }
+  { path: 'consultavisitas', component: ConsultavisitasComponent },
+  {
+    path: 'controlIngresos',
+    component: ControlingresosComponent
+  }
 
 ];
 

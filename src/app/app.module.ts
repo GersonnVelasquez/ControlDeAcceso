@@ -23,6 +23,9 @@ import { CrearvisitaComponent } from './components/crearvisita/crearvisita.compo
 import { ConsultavisitasComponent } from './components/consultavisitas/consultavisitas.component';
 import { AgregarpersonaComponent } from './components/shared/agregarpersona/agregarpersona.component';
 import { AgregarobjetosComponent } from './components/shared/agregarobjetos/agregarobjetos.component';
+import { ControlingresosComponent } from './components/controlingresos/controlingresos.component';
+import { VisitasdashComponent } from './components/shared/visitasdash/visitasdash.component';
+import { UpdateVisitComponent } from './components/update-visit/update-visit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { AgregarobjetosComponent } from './components/shared/agregarobjetos/agre
     CrearvisitaComponent,
     ConsultavisitasComponent,
     AgregarpersonaComponent,
-    AgregarobjetosComponent
+    AgregarobjetosComponent,
+    ControlingresosComponent,
+    VisitasdashComponent,
+    UpdateVisitComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -1,0 +1,24 @@
+<div class="container-fluid">
+
+  <div *ngIf="!EmpresaSelected && !UpdatingVisit" class="card-grid">
+    <div *ngFor="let emp of EmpresasData" class="card-wrap">
+      <div class="card">
+        <img src="https://pbs.twimg.com/profile_images/960879129695367168/OWZHMMSm_400x400.jpg" class="card-img" />
+        <h4 class="text-center">{{emp.nombre}}</h4>
+        <button type="button" class="btn btn-info btn-block"  (click) ="ConsultarEmpresa(emp)"><i class="far fa-eye"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12"  *ngIf="EmpresaSelected" >
+      <h1 class="text-center mt-1">{{Empresa.nombre}}</h1>
+      <app-visitasdash class="mt-1" (UpdateVisit)="updateVisita($event)" [isSecurityUser]="true" [EmpresaId]="Empresa.id_empresa"></app-visitasdash>
+      <button type="button" class="btn btn-secondary btn-lg" (click)="CambiarEmpresa()"><i class="ico fas fa-exchange-alt"></i>Cambiar Empresa</button>
+  </div>
+
+  
+<app-update-visit [Entrada]="true" (OnCancel)="Cancelar()" [visita]="Visita" [NombreEmpresa]="Empresa.nombre" *ngIf="UpdatingVisit"></app-update-visit>
+
+</div>
+
+
