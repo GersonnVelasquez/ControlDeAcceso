@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { StaticVar } from 'src/app/VaribalesEstaticas';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class LoginService {
 
   constructor(public router: Router, private http: HttpClient, private Message: ToastrService) { }
 
-  apiRoot = 'http://localhost:57384/';
+  apiRoot = StaticVar.Servidor;
 
   public  isLogin(): boolean {
     return this._login;

@@ -21,7 +21,8 @@ export class EmpresasComponent implements OnInit {
     this.GetEmpresas();
     this.EmpresasForm = new FormGroup({
       'NombreEmpresa': new FormControl('', [Validators.required]),
-      'Logo': new FormControl()
+      'Logo': new FormControl(),
+      'NombreImagen': new FormControl()
     });
   }
 
@@ -35,7 +36,9 @@ export class EmpresasComponent implements OnInit {
     const Empresa = {
       'id_empresa': '',
       'nombre': this.EmpresasForm.controls['NombreEmpresa'].value,
-      'logo': this.Logo
+      'logo': this.Logo,
+      'nombreimg': this.EmpresasForm.controls['NombreImagen'].value
+
     };
     this.empresas.AddEmpresas(Empresa).subscribe(
       _ => {

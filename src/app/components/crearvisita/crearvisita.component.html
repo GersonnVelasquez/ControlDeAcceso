@@ -86,7 +86,7 @@
             data-target="#AddPersonasModal"><i class="ico fas fa-user-plus"></i>Personas</button>
           <button type="button" class="ml-2 btn btn-secondary btn-lg" data-toggle="modal"
             data-target="#AddObjetosModal"><i class="ico fas fa-tools"></i>Objetos</button>
-          <button type="submit" class="ml-2 btn btn-success btn-lg" [disabled]="VisitasForm.invalid"><i
+          <button type="submit" class="ml-2 btn btn-success btn-lg" [disabled]="VisitasForm.invalid || PersonasVisita.length === 0"><i
               class="ico far fa-save"></i>Guardar</button>
         </div>
       </form>

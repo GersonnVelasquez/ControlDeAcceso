@@ -96,6 +96,7 @@ export class VisitasdashComponent implements OnChanges {
   }
 
   updateVisit(visita) {
+    this.getVisitasbyEmpresas();
       this.UpdateVisit.emit(visita);
   }
 

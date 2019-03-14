@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { StaticVar } from 'src/app/VaribalesEstaticas';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpresasService {
 
-  apiRoot = 'http://localhost:57384/';
+  apiRoot = StaticVar.Servidor;
 
   constructor(private http: HttpClient) { }
 

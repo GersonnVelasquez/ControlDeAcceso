@@ -19,6 +19,11 @@
               </div>
             </div>
             <div class="form-group">
+              <label for="NombreImg">Nombre Imagen:</label>
+              <input type="text" class="form-control" id="NombreImg" aria-describedby="NombreImg"
+                placeholder="Ejem: Logo_Empresa.png" formControlName="NombreImagen">
+            </div>
+            <div class="form-group">
               <label for="Logo">Importar Logo:</label>
               <input type="file" class="form-control-file" id="Logo" aria-describedby="Logo" formControlName="Logo" (change)="imageUpload($event)">
             </div>
@@ -28,7 +33,7 @@
       </div>
     </div>
     <div class="col-8">
-      <app-gtable [Data]="Empresas" [Titulo]="'Empresas'" [Ignore]="['id_empresa']" [Delete]="true"
+      <app-gtable [Data]="Empresas" [Titulo]="'Empresas'" [Ignore]="['id_empresa','nombreimg']" [Delete]="true"
         (OnDelete)="DeleteEmpresa($event)">"></app-gtable>
     </div>
   </div>
