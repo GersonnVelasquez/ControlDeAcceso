@@ -10,8 +10,13 @@
             <select id="TipoVisita" class="form-control" formControlName="TipoVisita"
             [ngClass]="{ 'is-invalid': VisitasForm.get('TipoVisita').invalid && (VisitasForm.get('TipoVisita').dirty || VisitasForm.get('TipoVisita').touched),
             'is-valid': VisitasForm.get('TipoVisita').valid && (VisitasForm.get('TipoVisita').dirty || VisitasForm.get('TipoVisita').touched)}">
-              <option selected>Tipo...</option>
-              <option>...</option>
+              <option selected>Visita de Gobierno</option>
+              <option>Visita de Proveedores</option>
+              <option>Visita de Clientes</option>
+              <option>Aspirantes de Empleos</option>
+              <option>Visita de Contratistas</option>
+              <option>Personales</option>
+              <option>Otros</option>
             </select>
             <div class="invalid-feedback"
               *ngIf="VisitasForm.controls['TipoVisita'].errors?.required && (VisitasForm.get('TipoVisita').dirty || VisitasForm.get('TipoVisita').touched)">
@@ -22,9 +27,9 @@
             <label for="Empresa">Empresa Procedencia:</label>
             <input id="Empresa" list="datos" class="custom-select" formControlName="EmpresaProc">
             <datalist id="datos">
-              <option value="">1</option>
-              <option value="">2</option>
-              <option value="">3</option>
+              <option value="">CEUTEC</option>
+              <option value="">TAZ</option>
+              <option value="">ACOSA</option>
             </datalist>
             <small id="EmpresaInfo" class="form-text text-muted">Si la visita es personal dejar en blanco.</small>
           </div>
