@@ -27,31 +27,36 @@ export class EmpresasComponent implements OnInit {
   }
 
 
-  imageUpload(e) {
-     this.Logo = e.target.files[0];
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.EmpresasForm.controls['logo'] = file;
+      console.log(file);
+    }
   }
 
 
   AgregarEmpresa(): void {
-    const Empresa = {
-      'id_empresa': '',
-      'nombre': this.EmpresasForm.controls['NombreEmpresa'].value,
-      'logo': this.Logo,
-      'nombreimg': this.EmpresasForm.controls['NombreImagen'].value
+    console.log(this.EmpresasForm.controls['logo'].value);
+    // const Empresa = {
+    //   'id_empresa': '',
+    //   'nombre': this.EmpresasForm.controls['NombreEmpresa'].value,
+    //   'logo': this.EmpresasForm.controls['logo'].value,
+    //   'nombreimg': this.EmpresasForm.controls['NombreImagen'].value
 
-    };
-    this.empresas.AddEmpresas(Empresa).subscribe(
-      _ => {
-      },
-      _error => {
-        alert('Error');
-      },
-      () => {
-        this.GetEmpresas();
-        this.EmpresasForm.reset();
-        this.Message.success('Empresa Agregada Correctamente', 'Listo!');
-      }
-    );
+    // };
+    // this.empresas.AddEmpresas(Empresa).subscribe(
+    //   _ => {
+    //   },
+    //   _error => {
+    //     alert('Error');
+    //   },
+    //   () => {
+    //     // this.GetEmpresas();
+    //     // this.EmpresasForm.reset();
+    //     this.Message.success('Empresa Agregada Correctamente', 'Listo!');
+    //   }
+    // );
   }
 
   GetEmpresas(): void {

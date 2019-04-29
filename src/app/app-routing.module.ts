@@ -12,9 +12,8 @@ import { ControlingresosComponent } from './components/controlingresos/controlin
 
 const routes: Routes = [
 
-  { path: '', component: LoginComponent },
+  { path: '', component: EmpresasComponent },
   { path: 'inicio', component: InicioComponent, canActivate: [AuthGuadService] },
-  { path: 'login', component: LoginComponent },
   { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuadService] },
   { path: 'roles', component: RolesComponent, canActivate: [AuthGuadService] },
   { path: 'empresas', component: EmpresasComponent, canActivate: [AuthGuadService] },
