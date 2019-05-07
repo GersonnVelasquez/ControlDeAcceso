@@ -13,6 +13,7 @@ export class GtableComponent implements OnChanges, OnInit {
   @Input() Customize = true;
   @Input() Ignore = [];
   @Input() ColumnasIn = [];
+  @Input() ImgCol = [];
   @Input() Titulo: string;
   @Output() OnDelete = new EventEmitter();
 
@@ -42,12 +43,20 @@ export class GtableComponent implements OnChanges, OnInit {
         for (const item of Object.getOwnPropertyNames(this.Data[0]).filter(col => !this.Ignore.includes(col))) {
           this.Columnas.push({
             'Nombre': item,
-            'Value': item
+            'Value': item,
+            'IsImg': this.ImgCol.includes(item)
           });
       }
         this.OrderColumn = this.Columnas[0].Value;
       }
     }
+  }
+
+  SetImage(image) {
+    if (image != null) {
+      return  'data:image/gif;base64,' + image._buffer;
+    }
+    return 'assets/img/na.jpg';
   }
 
   SetOrder(OrderColumn: string) {

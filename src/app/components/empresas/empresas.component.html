@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
               <label for="Logo">Importar Logo:</label>
-              <input type="file" class="form-control-file" id="Logo" aria-describedby="Logo" formControlName="Logo" (change)="imageUpload($event)">
+              <input (change)="onFileChange($event)" type="file" class="form-control-file" id="Logo" aria-describedby="Logo" formControlName="Logo">
             </div>
             <button type="submit" class="btn btn-primary" [disabled]="EmpresasForm.invalid">Agregar</button>
           </form>
@@ -28,8 +28,8 @@
       </div>
     </div>
     <div class="col-8">
-      <app-gtable [Data]="Empresas" [Titulo]="'Empresas'" [Ignore]="['id_empresa']" [Delete]="true"
-        (OnDelete)="DeleteEmpresa($event)">"></app-gtable>
+      <app-gtable [Data]="Empresas" [Titulo]="'Empresas'" [Ignore]="['id_empresa','nombreimg']" [ImgCol]="['logo']" [Delete]="true"
+        (OnDelete)="DeleteEmpresa($event)"></app-gtable>
     </div>
   </div>
 

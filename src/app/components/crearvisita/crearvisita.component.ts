@@ -52,7 +52,6 @@ export class CrearvisitaComponent implements OnInit {
     });
   }
 
-
   AgregarPersona(personaVisita): void {
     if (this.PersonasVisita.find(x => x.n_identidad === personaVisita.n_identidad) === undefined) {
       this.PersonasVisita.push(personaVisita);

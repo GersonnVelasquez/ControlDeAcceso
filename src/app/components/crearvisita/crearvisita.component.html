@@ -10,8 +10,13 @@
             <select id="TipoVisita" class="form-control" formControlName="TipoVisita"
             [ngClass]="{ 'is-invalid': VisitasForm.get('TipoVisita').invalid && (VisitasForm.get('TipoVisita').dirty || VisitasForm.get('TipoVisita').touched),
             'is-valid': VisitasForm.get('TipoVisita').valid && (VisitasForm.get('TipoVisita').dirty || VisitasForm.get('TipoVisita').touched)}">
-              <option selected>Tipo...</option>
-              <option>...</option>
+              <option selected>Visita de Gobierno</option>
+              <option>Visita de Proveedores</option>
+              <option>Visita de Clientes</option>
+              <option>Aspirantes de Empleos</option>
+              <option>Visita de Contratistas</option>
+              <option>Personales</option>
+              <option>Otros</option>
             </select>
             <div class="invalid-feedback"
               *ngIf="VisitasForm.controls['TipoVisita'].errors?.required && (VisitasForm.get('TipoVisita').dirty || VisitasForm.get('TipoVisita').touched)">
@@ -22,9 +27,9 @@
             <label for="Empresa">Empresa Procedencia:</label>
             <input id="Empresa" list="datos" class="custom-select" formControlName="EmpresaProc">
             <datalist id="datos">
-              <option value="">1</option>
-              <option value="">2</option>
-              <option value="">3</option>
+              <option value="">CEUTEC</option>
+              <option value="">TAZ</option>
+              <option value="">ACOSA</option>
             </datalist>
             <small id="EmpresaInfo" class="form-text text-muted">Si la visita es personal dejar en blanco.</small>
           </div>
@@ -86,7 +91,7 @@
             data-target="#AddPersonasModal"><i class="ico fas fa-user-plus"></i>Personas</button>
           <button type="button" class="ml-2 btn btn-secondary btn-lg" data-toggle="modal"
             data-target="#AddObjetosModal"><i class="ico fas fa-tools"></i>Objetos</button>
-          <button type="submit" class="ml-2 btn btn-success btn-lg" [disabled]="VisitasForm.invalid"><i
+          <button type="submit" class="ml-2 btn btn-success btn-lg" [disabled]="VisitasForm.invalid || PersonasVisita.length === 0"><i
               class="ico far fa-save"></i>Guardar</button>
         </div>
       </form>
@@ -96,12 +101,12 @@
   <div class="row mt-2">
     <div class="col-md-6">
       <app-gtable [ColumnasIn]="PersonasVisitasTable" [Data]="PersonasVisita" [Titulo]="'Personas Anunciadas'"
-        [Delete]="true" (OnDelete)="EliminarPersona($event)">"></app-gtable>
+        [Delete]="true" (OnDelete)="EliminarPersona($event)"></app-gtable>
     </div>
 
     <div class="col-md-6">
       <app-gtable [ColumnasIn]="ObjetosTable" [Data]="Objetos" [Titulo]="'Objetos'" [Delete]="true"
-        (OnDelete)="EliminarObjeto($event)">"></app-gtable>
+        (OnDelete)="EliminarObjeto($event)"></app-gtable>
     </div>
   </div>
 

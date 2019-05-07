@@ -1,0 +1,100 @@
+<div class="card text-center">
+  <div class="card-header">
+    <div class="row">
+      <ul class="ml-2 nav nav-pills card-header-pills col-md-8">
+        <li class="nav-item hand">
+          <a class="nav-link" [ngClass]="Espera ? 'active':''" (click)="SetInEspera()">En Espera</a>
+        </li>
+        <li class="nav-item hand">
+          <a class="nav-link" [ngClass]="EnCurso ? 'active':''" (click)="SetInCurso()">En Curso</a>
+        </li>
+        <li class="nav-item hand">
+          <a class="nav-link" [ngClass]="Finalizadas ? 'active':''" (click)="SetFinalizadas()">Finalizadas</a>
+        </li>
+      </ul>
+      <input type="text" class="form-control col-md-4" placeholder="Buscar" aria-label="Buscar"
+        aria-describedby="basic-addon1" [(ngModel)]="searchText">
+    </div>
+  </div>
+  <div class="card-body table-responsive">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Tipo Visita</th>
+          <th>Empresa Procedencia</th>
+          <th>Descripcion</th>
+          <th>Fecha/Hora Programada</th>
+          <th>Personas</th>
+          <th>Objetos</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let visita of Visitas | filter:searchText">
+          <td>{{visita.tipo_visita}}</td>
+          <td>{{visita.empresa_procedencia}}</td>
+          <td>{{visita.descripcion}}</td>
+          <td>{{visita.fecha_visita | date: 'dd/MM/yyyy'}}{{ ' '+visita.hora_visita  }}</td>
+          <td>
+            <button class="btn btn-info" type="button" (click)="verPersonas(visita.id_visita)" data-toggle="modal"
+              data-target="#PersonasModal">
+              <i class="fas fa-eye"></i>
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-info" type="button" (click)="verObjetos(visita.id_visita)" data-toggle="modal"
+              data-target="#ObjetosModal">
+              <i class="fas fa-eye"></i>
+            </button>
+          </td>
+          <td>
+            <button *ngIf="isAdmin" (click)="EliminarVisita(visita.id_visita)"
+              [disabled]="visita.estado === 2 || visita.estado === 3" type="button" class="btn btn-danger"><i
+                class="fas fa-trash-alt"></i></button>
+            <button *ngIf="isSecurityUser" [disabled]="visita.estado === 3" (click)="updateVisit(visita)" type="button"
+              class="btn btn-primary">
+              <i class="far fa-edit"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal Personas -->
+<div class="modal fade bd-example-modal-lg" id="PersonasModal" tabindex="-1" role="dialog"
+  aria-labelledby="PersonasModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AddPersonasModalTitle">Informacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-gtable class="mt-2" [Data]="Personas" [Titulo]="'Personal Esperado'" [Ignore]="['IdVisitaDetalle']"
+          [Customize]="false"></app-gtable>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Objetos -->
+<div class="modal fade bd-example-modal-lg" id="ObjetosModal" tabindex="-1" role="dialog" aria-labelledby="ObjetosModal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AddPersonasModalTitle">Informacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-gtable [Data]="Objetos" [Ignore]="['idObjeto']" [Titulo]="'Objeto en Visita'" [Customize]="false">
+        </app-gtable>
+      </div>
+    </div>
+  </div>
+</div>
