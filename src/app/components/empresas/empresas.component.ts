@@ -26,10 +26,11 @@ export class EmpresasComponent implements OnInit {
   }
 
 
-  imageUpload(event) {
+  onFileChange(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.Logo = file;
+      this.EmpresasForm.controls['logo'] = file;
+      console.log(file);
     }
   }
 

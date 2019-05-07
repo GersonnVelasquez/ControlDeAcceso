@@ -20,7 +20,15 @@ export class EmpresasService {
   }
 
   public AddEmpresas(Empresa: any): Observable<any> {
+
+    // const formData = new FormData();
+    // formData.append('file', Empresa.logo);
+
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+
+    // const apiURLLogo = `${this.apiRoot}api/Empresas/insert/logo/`;
+    // this.http.post(apiURLLogo, formData);
+
     const apiURL = `${this.apiRoot}api/Empresas/insert/`;
     return this.http.post(apiURL, Empresa);
   }
