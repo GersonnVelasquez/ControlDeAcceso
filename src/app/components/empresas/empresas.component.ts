@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class EmpresasComponent implements OnInit {
 
   Logo: File;
-
+  testData: FormData = new FormData();
   Empresas = [];
   EmpresasForm: FormGroup;
 
@@ -21,25 +21,30 @@ export class EmpresasComponent implements OnInit {
     this.GetEmpresas();
     this.EmpresasForm = new FormGroup({
       'NombreEmpresa': new FormControl('', [Validators.required]),
-      'Logo': new FormControl(),
-      'NombreImagen': new FormControl()
+      'Logo': new FormControl()
     });
   }
 
 
-  imageUpload(e) {
-     this.Logo = e.target.files[0];
+  imageUpload(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.Logo = file;
+    }
   }
 
 
-  AgregarEmpresa(): void {
-    const Empresa = {
-      'id_empresa': '',
-      'nombre': this.EmpresasForm.controls['NombreEmpresa'].value,
-      'logo': this.Logo,
-      'nombreimg': this.EmpresasForm.controls['NombreImagen'].value
+  private NewEmpresa(): any {
+    const input = new FormData();
+    input.append('id_empresa', '');
+    input.append('nombre', this.EmpresasForm.controls['NombreEmpresa'].value);
+    input.append('logo', this.Logo);
+    return input;
+  }
 
-    };
+  AgregarEmpresa(): void {
+    const Empresa = this.NewEmpresa();
+
     this.empresas.AddEmpresas(Empresa).subscribe(
       _ => {
       },

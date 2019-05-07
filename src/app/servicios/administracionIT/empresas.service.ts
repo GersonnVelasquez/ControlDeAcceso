@@ -22,7 +22,7 @@ export class EmpresasService {
   public AddEmpresas(Empresa: any): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     const apiURL = `${this.apiRoot}api/Empresas/insert/`;
-    return this.http.post(apiURL, Empresa, {headers: headers});
+    return this.http.post(apiURL, Empresa);
   }
 
   public DeleteEmpresas(Empresa): Observable<any> {

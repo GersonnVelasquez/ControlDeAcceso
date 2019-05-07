@@ -26,7 +26,13 @@
         <tr
           *ngFor="let Data of Data | filter:searchText | sort: OrderColumn : Asc | slice:page === 1 ? 0 : ((page-1)*Ctd) : page === 1 ? (page*Ctd) : ((page-1)*Ctd) ++ Ctd">
           <td *ngFor="let Columna of Columnas">
-            {{Data[Columna.Value]}}
+            <span *ngIf="!Columna.IsImg">
+              {{Data[Columna.Value]}}
+            </span>
+            <span *ngIf="Columna.IsImg" >
+                <img [src]="SetImage(Data[Columna.Value])" height="50px" width="200px" class="img-thumbnail">
+            </span>
+           
           </td> 
           <td *ngIf="Customize" style="max-width: 80px;">
             <div class="btn-group m-100">
