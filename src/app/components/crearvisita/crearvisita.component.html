@@ -15,6 +15,10 @@
               <option>Visita de Clientes</option>
               <option>Aspirantes de Empleos</option>
               <option>Visita de Contratistas</option>
+              <option>Contenedores Llenos</option>
+              <option>Contenedores Vacíos</option>
+              <option>Cabezales</option>
+              <option>Buses</option>
               <option>Personales</option>
               <option>Otros</option>
             </select>
@@ -65,9 +69,12 @@
                 Permiso de Trabajo
               </label>
             </div>
+            
+                   </div>
           </div>
 
-        </div>
+          </div>
+       
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="Descripcion">Descripcion:</label>
@@ -86,6 +93,14 @@
               enter.</small>
           </div>
         </div>
+
+        <div class="form-group">
+          <label for="Adjunto">Importar Documento:</label>
+          <input (change)="onFileChange($event)" type="file" class="form-control-file" id="Adjunto" aria-describedby="Adjunto" formControlName="Adjunto">
+          <button type="submit" class=" btn btn-primary" [disabled]="EmpresasForm.invalid">Agregar</button>
+       
+        </div>
+        
         <div class="form-group">
           <button type="button" class="ml-2 btn btn-primary btn-lg" data-toggle="modal"
             data-target="#AddPersonasModal"><i class="ico fas fa-user-plus"></i>Personas</button>

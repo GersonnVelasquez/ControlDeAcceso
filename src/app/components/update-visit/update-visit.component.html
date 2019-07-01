@@ -32,6 +32,16 @@
                 Marcar Como Visita Terminanda.
               </label>
             </div>
+
+            <div class="form-group">
+              <label for="Adjunto">Importar Documento:</label>
+              <input (change)="onFileChange($event)" type="file" class="form-control-file" id="Adjunto" aria-describedby="Adjunto" formControlName="Adjunto">
+              <button type="submit" class=" btn btn-primary" [disabled]="EmpresasForm.invalid">Agregar</button>
+           
+            </div>
+
+
+
             <button type="button" (click)="UpdateVisitas()" class="btn btn-success btn-lg mt-2"
               [disabled]="!VisitasForm.get('isOk').value"><i class="ico far fa-save"></i>Guardar</button>
             <button type="button" (click)="Cancelar()" class="btn btn-danger btn-lg mt-2 ml-1"><i

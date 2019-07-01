@@ -3,7 +3,7 @@
     <div *ngFor="let emp of EmpresasData"  class="col-sm-3 py-1 align-self-end">
       <div class="h-100">
           <div class="card-body">
-            <img [src]="'../../../assets/img/'+ emp.nombreimg" class="img-fluid w-100 mw-100" />
+            <img [src]="'../../../assets/img/'+ emp.nombreimg" />
             <h4 class="text-center">{{emp.nombre}}</h4>
             <button type="button" class="btn btn-info btn-block"  (click) ="ConsultarEmpresa(emp)"><i class="far fa-eye"></i></button>
           </div>
@@ -16,7 +16,7 @@
   <!-- <div *ngIf="!EmpresaSelected && !UpdatingVisit" class="card-grid">
     <div *ngFor="let emp of EmpresasData" class="card-wrap">
       <div class="card">
-        <img [src]="'../../../assets/img/'+ emp.nombreimg" />
+        <img [src]="'../../../assets/img/'+ emp.nombreimg" /> o class="img-fluid w-100 mw-100" />
         <h4 class="text-center">{{emp.nombre}}</h4>
         <button type="button" class="btn btn-info btn-block"  (click) ="ConsultarEmpresa(emp)"><i class="far fa-eye"></i></button>
       </div>

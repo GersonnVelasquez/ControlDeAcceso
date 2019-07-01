@@ -11,6 +11,7 @@ import { LoginService } from 'src/app/servicios/shared/login.service';
 })
 export class CrearvisitaComponent implements OnInit {
 
+  
   VisitasForm: FormGroup;
   PersonasVisita = [];
   Objetos = [];
@@ -49,8 +50,11 @@ export class CrearvisitaComponent implements OnInit {
       'PermisoTrabajo': new FormControl(false),
       'Descripcion': new FormControl('', [Validators.required]),
       'Vehiculos': new FormControl(''),
+  
     });
   }
+
+  
 
   AgregarPersona(personaVisita): void {
     if (this.PersonasVisita.find(x => x.n_identidad === personaVisita.n_identidad) === undefined) {
@@ -95,6 +99,8 @@ export class CrearvisitaComponent implements OnInit {
       'id_permiso_trabajo': null,
       'placa_vehiculo': this.VisitasForm.controls['Vehiculos'].value,
       'descripcion': this.VisitasForm.controls['Descripcion'].value,
+   
+
     };
 
     const nuevaVisita = {

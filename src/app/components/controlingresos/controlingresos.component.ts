@@ -10,6 +10,7 @@ import { Empresa } from 'src/app/Modelos/Empresa';
 })
 export class ControlingresosComponent implements OnInit {
 
+ 
   Empresa = new Empresa();
   EmpresaSelected = false;
   EmpresasData = [];
@@ -21,7 +22,7 @@ export class ControlingresosComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
+      }
 
   getEmpresas() {
     this.empresas.getEmpresas().subscribe(

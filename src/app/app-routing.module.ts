@@ -12,7 +12,7 @@ import { ControlingresosComponent } from './components/controlingresos/controlin
 
 const routes: Routes = [
 
-  { path: '', component: EmpresasComponent },
+  { path: '', component: LoginComponent },
   { path: 'inicio', component: InicioComponent, canActivate: [AuthGuadService] },
   { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuadService] },
   { path: 'roles', component: RolesComponent, canActivate: [AuthGuadService] },
