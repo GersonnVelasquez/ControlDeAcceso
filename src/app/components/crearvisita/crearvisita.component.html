@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
   <div class="card">
-    <h5 class="card-header">Informacion General</h5>
+    <h5 class="card-header">Información General</h5>
     <div class="card-body">
       <form [formGroup]="VisitasForm" (ngSubmit)="AgregarVisita()" autocomplete="off" novalidate>
         <div class="form-row">
@@ -15,6 +15,10 @@
               <option>Visita de Clientes</option>
               <option>Aspirantes de Empleos</option>
               <option>Visita de Contratistas</option>
+              <option>Contenedores Llenos</option>
+              <option>Contenedores Vacíos</option>
+              <option>Cabezales</option>
+              <option>Buses</option>
               <option>Personales</option>
               <option>Otros</option>
             </select>
@@ -27,11 +31,10 @@
             <label for="Empresa">Empresa Procedencia:</label>
             <input id="Empresa" list="datos" class="custom-select" formControlName="EmpresaProc">
             <datalist id="datos">
-              <option value="">CEUTEC</option>
-              <option value="">TAZ</option>
-              <option value="">ACOSA</option>
+              <option value="">N/A</option>
+              
             </datalist>
-            <small id="EmpresaInfo" class="form-text text-muted">Si la visita es personal dejar en blanco.</small>
+            <small id="EmpresaInfo" class="form-text text-muted">Si la visita es personal seleccionar N/A.</small>
           </div>
         </div>
         <div class="form-row">
@@ -70,7 +73,7 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="Descripcion">Descripcion:</label>
+            <label for="Descripcion">Motivo de Visita:</label>
             <textarea class="form-control" id="Descripcion" rows="2" formControlName="Descripcion"  
             [ngClass]="{ 'is-invalid': VisitasForm.get('Descripcion').invalid && (VisitasForm.get('Descripcion').dirty || VisitasForm.get('Descripcion').touched),
             'is-valid': VisitasForm.get('Descripcion').valid && (VisitasForm.get('Descripcion').dirty || VisitasForm.get('Descripcion').touched)}"></textarea>
@@ -80,12 +83,18 @@
             </div>
           </div>
           <div class="form-group col-md-6">
-            <label for="Vehiculos">Vehiculos:</label>
+            <label for="Vehiculos">Vehículos:</label>
             <textarea class="form-control" id="Vehiculos" rows="2" formControlName="Vehiculos"></textarea>
-            <small id="VehiuloInfo" class="form-text text-muted">Ingrese las placas de los vehiculos separados por un
+            <small id="VehiuloInfo" class="form-text text-muted">Ingrese las placas de los vehículos separados por un
               enter.</small>
           </div>
         </div>
+        <div class="form-group">
+          <label for="Adjunto">Importar Documento:</label>
+          <input (change)="onFileChange($event)" type="file" class="form-control-file" id="Adjunto" aria-describedby="Adjunto" formControlName="Adjunto">
+          </div>
+         
+
         <div class="form-group">
           <button type="button" class="ml-2 btn btn-primary btn-lg" data-toggle="modal"
             data-target="#AddPersonasModal"><i class="ico fas fa-user-plus"></i>Personas</button>
@@ -94,6 +103,8 @@
           <button type="submit" class="ml-2 btn btn-success btn-lg" [disabled]="VisitasForm.invalid || PersonasVisita.length === 0"><i
               class="ico far fa-save"></i>Guardar</button>
         </div>
+
+     
       </form>
     </div>
   </div>

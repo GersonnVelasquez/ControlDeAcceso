@@ -23,19 +23,12 @@ export class AgregarpersonaComponent implements OnInit {
   ngOnInit() {
     this.PersonasForm = new FormGroup({
       'Nombre': new FormControl('', [Validators.required]),
-      'NoIdentidad': new FormControl('', [
-        Validators.required,
-        Validators.minLength(15),
-        Validators.maxLength(15)
-      ]),
-      'Correo': new FormControl('', [
-        Validators.required,
-        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
-      ]),
+      'NoIdentidad': new FormControl('', [Validators.required]),
       'Telefono': new FormControl('', [
         Validators.required,
         Validators.minLength(8)
       ]),
+      'Correo': new FormControl(''),
     });
   }
 

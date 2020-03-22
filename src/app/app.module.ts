@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,9 @@ import { AgregarobjetosComponent } from './components/shared/agregarobjetos/agre
 import { ControlingresosComponent } from './components/controlingresos/controlingresos.component';
 import { VisitasdashComponent } from './components/shared/visitasdash/visitasdash.component';
 import { UpdateVisitComponent } from './components/update-visit/update-visit.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+
+
 
 @NgModule({
   declarations: [
@@ -45,7 +49,8 @@ import { UpdateVisitComponent } from './components/update-visit/update-visit.com
     AgregarobjetosComponent,
     ControlingresosComponent,
     VisitasdashComponent,
-    UpdateVisitComponent
+    UpdateVisitComponent,
+    ReportesComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -59,7 +64,8 @@ import { UpdateVisitComponent } from './components/update-visit/update-visit.com
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    PDFExportModule
   ],
   providers: [],
   bootstrap: [AppComponent]

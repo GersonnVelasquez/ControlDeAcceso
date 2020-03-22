@@ -38,6 +38,7 @@ export class EmpresasComponent implements OnInit {
     const input = new FormData();
     input.append('id_empresa', '');
     input.append('nombre', this.EmpresasForm.controls['NombreEmpresa'].value);
+    input.append('nombreimg', this.Logo.name);
     input.append('logo', this.Logo);
     return input;
   }

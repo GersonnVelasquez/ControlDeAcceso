@@ -11,6 +11,8 @@ import { LoginService } from 'src/app/servicios/shared/login.service';
 })
 export class CrearvisitaComponent implements OnInit {
 
+  testData: FormData = new FormData();
+  Adjunto: File;
   VisitasForm: FormGroup;
   PersonasVisita = [];
   Objetos = [];
@@ -49,8 +51,17 @@ export class CrearvisitaComponent implements OnInit {
       'PermisoTrabajo': new FormControl(false),
       'Descripcion': new FormControl('', [Validators.required]),
       'Vehiculos': new FormControl(''),
+      'Adjunto': new FormControl('')
     });
   }
+
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.Adjunto = file;
+    }
+  }
+
 
   AgregarPersona(personaVisita): void {
     if (this.PersonasVisita.find(x => x.n_identidad === personaVisita.n_identidad) === undefined) {
@@ -80,6 +91,17 @@ export class CrearvisitaComponent implements OnInit {
     this.Objetos = this.Objetos.filter(x => x.descripcion !== objeto.descripcion);
   }
 
+  private NewAdjunto(): any {
+
+    if (this.Adjunto !== undefined) {
+      const input = new FormData();
+      input.append('Adjunto', this.Adjunto);
+      input.append('Nombre_Adjunto', this.Adjunto.name);
+      return input;
+    }
+
+  }
+
 
   AgregarVisita() {
     const visita = {
@@ -95,6 +117,7 @@ export class CrearvisitaComponent implements OnInit {
       'id_permiso_trabajo': null,
       'placa_vehiculo': this.VisitasForm.controls['Vehiculos'].value,
       'descripcion': this.VisitasForm.controls['Descripcion'].value,
+      'nombre_adjunto': this.Adjunto === undefined ? null : this.Adjunto.name
     };
 
     const nuevaVisita = {
@@ -110,6 +133,10 @@ export class CrearvisitaComponent implements OnInit {
         alert('Error');
       },
       () => {
+
+        if (this.Adjunto !== undefined) {
+          this.visita.AddAdjunto(this.NewAdjunto());
+        }
         this.VisitasForm.reset();
         this.PersonasVisita = [];
         this.Objetos = [];

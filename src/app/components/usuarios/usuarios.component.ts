@@ -22,6 +22,21 @@ export class UsuariosComponent implements OnInit {
     private empresas: EmpresasService,
     private roles: RolesService) {
   }
+  
+  // Columnas = [
+  //   {
+  //     'Nombre': 'Logo Empresa',
+  //     'Value': 'Logo',
+  //     'IsImg': false
+  //   },
+  //   {
+  //     'Nombre': 'Nombre Empresa',
+  //     'Value': 'Nombre',
+  //     'IsImg': false
+  //   }
+  // ];
+
+
 
   ngOnInit() {
     this.getInfo();

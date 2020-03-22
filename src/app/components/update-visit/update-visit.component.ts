@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UpdateVisitComponent implements OnChanges, OnInit {
 
+  Adjunto: File;
   Personas = [];
   Objetos = [];
   @Output() OnCancel = new EventEmitter();
@@ -28,9 +29,16 @@ export class UpdateVisitComponent implements OnChanges, OnInit {
 ngOnInit() {
   this.VisitasForm = new FormGroup({
     'Isfinal': new FormControl(false),
-    'isOk': new FormControl(false)
+    'isOk': new FormControl(false),
+    'Adjunto': new FormControl('')
   });
+}
 
+onFileChange(event) {
+  if (event.target.files.length > 0) {
+    const file = event.target.files[0];
+    this.Adjunto = file;
+  }
 }
   ngOnChanges() {
     this.getInfo();
@@ -53,6 +61,14 @@ ngOnInit() {
   Cancelar() {
     this.OnCancel.emit();
   }
+  private NewAdjunto(): any {
+    if (this.Adjunto !== undefined) {
+    const input = new FormData();
+    input.append('Adjunto', this.Adjunto);
+    input.append('Nombre_Adjunto', this.Adjunto.name);
+    return input;
+    }
+  }
 
   UpdateVisitas() {
     const visitasFinales = [];
@@ -67,7 +83,8 @@ ngOnInit() {
         'hr_salida': entry.HoraSalida,
         'n_carnet': entry.NoCarnet,
         'observaciones': entry.Observaciones,
-      });
+        'nombre_adjunto' : this.Adjunto === undefined ? null : this.Adjunto.name
+       });
     }
 
     for (const entry of this.Objetos) {
@@ -99,7 +116,10 @@ ngOnInit() {
         alert('Error');
       },
       () => {
-        this.Message.success('Visita Actualizada', 'Listo');
+        if (this.Adjunto !== undefined) {
+          this.Visita.Adjunto(this.NewAdjunto());
+        }
+         this.Message.success('Visita Actualizada', 'Listo');
         this.OnUpdate.emit();
       });
   }

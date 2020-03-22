@@ -3,7 +3,7 @@
     &#9776;
   </button>
   <a class="navbar-brand" href="#">
-    <img src="" width="30" height="30" alt="">
+    <img src="https://pbs.twimg.com/profile_images/960879129695367168/OWZHMMSm_400x400.jpg" width="30" height="30" alt="">
     GVIP
   </a>
 
@@ -23,7 +23,7 @@
           Administrador IT
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]="['usuarios']"><i class="ico fas fa-users"></i>Administrar Ususario</a>
+          <a class="dropdown-item" [routerLink]="['usuarios']"><i class="ico fas fa-users"></i>Administrar Usuario</a>
           <a class="dropdown-item" [routerLink]="['roles']"><i class="ico far fa-check-square"></i>Administrar Roles</a>
           <a class="dropdown-item" [routerLink]="['empresas']"><i class="ico fas fa-building"></i>Administrar
             Empresas</a>
@@ -57,6 +57,19 @@
               class="ico fas fa-clipboard-check"></i>Ingresos</a>
         </div>
       </li>
+      <!-- _______________________REPORTES___________________________ -->
+      <!-- <li class="nav-item dropdown" routerLinkActive="active"
+      *ngIf="login.UsuarioActual.id_rol === 1008 || login.UsuarioActual.id_rol === 1  || login.UsuarioActual.id_rol === 1005 ">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="menu" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <i class="far fa-file-chart-line"></i>
+        Reportería
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" [routerLink]="['reportes']"><i 
+          class="fas fa-file-chart-pie"></i>Reportes</a>
+      </div>
+    </li> -->
 
 
     </ul>

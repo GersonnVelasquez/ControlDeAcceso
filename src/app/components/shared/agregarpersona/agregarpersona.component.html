@@ -16,7 +16,7 @@
     </div>
     <div class="invalid-feedback"
       *ngIf="PersonasForm.controls['NoIdentidad'].errors?.minlength && (PersonasForm.get('NoIdentidad').dirty || PersonasForm.get('NoIdentidad').touched)">
-      Debe tener al menos 15 digitos usando separadores "-".
+      Debe tener al menos 15 dígitos usando separadores "-".
     </div>
     <datalist id="Personas">
       <option *ngFor="let p of Personas" value="{{p.n_identidad}}">{{p.n_identidad}}</option>
@@ -43,11 +43,11 @@
     </div>
     <div class="invalid-feedback"
       *ngIf="PersonasForm.controls['Correo'].errors?.pattern && (PersonasForm.get('Correo').dirty || PersonasForm.get('Correo').touched)">
-      El Correo no tiene un formato valido.
+      El Correo no tiene un formato válido.
     </div>
   </div>
   <div class="form-group">
-    <label for="Telefono">No. Telefono:</label>
+    <label for="Telefono">No. Teléfono:</label>
     <input formControlName="Telefono" type="text" class="form-control" id="Telefono" placeholder="31233445"
       [ngClass]="{ 'is-invalid': PersonasForm.get('Telefono').invalid && (PersonasForm.get('Telefono').dirty || PersonasForm.get('Telefono').touched),
     'is-valid': PersonasForm.get('Telefono').valid && (PersonasForm.get('Telefono').dirty || PersonasForm.get('Telefono').touched)}">
@@ -57,7 +57,7 @@
     </div>
     <div class="invalid-feedback"
       *ngIf="PersonasForm.controls['Telefono'].errors?.minlength && (PersonasForm.get('Telefono').dirty || PersonasForm.get('Telefono').touched)">
-      Debe tener al menos 8 digitos sin usar separadores tipo "-".
+      Debe tener al menos 8 dígitos sin usar separadores tipo "-".
     </div>
   </div>
   <button type="submit" class="btn btn-primary btn-lg" [disabled]="PersonasForm.invalid">Agregar</button>

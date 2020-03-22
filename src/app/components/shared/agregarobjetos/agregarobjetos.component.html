@@ -1,6 +1,6 @@
 <form [formGroup]="ObjetosForm" (ngSubmit)="AgregarObjeto()" autocomplete="off" novalidate>
   <div class="form-group">
-    <label for="Descripcion">Descripcion:</label>
+    <label for="Descripcion">Descripción:</label>
     <input type="text" class="form-control" id="Descripcion" formControlName="Descripcion"
       [ngClass]="{ 'is-invalid': ObjetosForm.get('Descripcion').invalid && (ObjetosForm.get('Descripcion').dirty || ObjetosForm.get('Descripcion').touched),
     'is-valid': ObjetosForm.get('Descripcion').valid && (ObjetosForm.get('Descripcion').dirty || ObjetosForm.get('Descripcion').touched)}">

@@ -5,7 +5,33 @@
       <p class="lead">Usuario Actual: {{profile.nombre}}</p>
     </div>
   </div>
+  <div class="form-group">
+
+    <button *ngIf="login.UsuarioActual.id_rol === 1004 || login.UsuarioActual.id_rol === 1"
+    
+    
+    
+    (click)="CrearVisita()"type="button" class="ml-2 btn btn-primary"> Crear Visita </button>
+  
+  
+    <button *ngIf="login.UsuarioActual.id_rol === 1004 || login.UsuarioActual.id_rol === 1"(click)="VerVisita()"type="button" class="ml-2 btn btn-primary"> Consultar Visita </button>
+  
+  
+    <button *ngIf="login.UsuarioActual.id_rol === 1005 || login.UsuarioActual.id_rol === 1" (click)="ControlVisita()"type="button" class="ml-2 btn btn-primary"> Control Ingresos </button>
+
+    <button  *ngIf="login.UsuarioActual.id_rol === 1"(click)="Usuarios()"type="button" class="ml-2 btn btn-primary"> Usuarios </button>
+
+
+    <button *ngIf="login.UsuarioActual.id_rol === 1" (click)="Empresas()"type="button" class="ml-2 btn btn-primary"> Empresas </button>
+
+ 
+    <button *ngIf="login.UsuarioActual.id_rol === 1" (click)="Roles()"type="button" class="ml-2 btn btn-primary"> Roles </button>
+
 </div>
+</div>
+
+
+
 
 <!-- <pre>
   {{profile | json}}

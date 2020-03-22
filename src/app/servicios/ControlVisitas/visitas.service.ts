@@ -40,4 +40,13 @@ export class VisitasService {
     return this.http.delete(apiURL);
   }
 
+  public AddAdjunto(Adjunto: any) {
+    const apiURL = `${this.apiRoot}api/Visita/Adjunto/`;
+    this.http.post(apiURL, Adjunto).subscribe();
+     }
+
+  public Adjunto(Adjunto: any) {
+    const apiURL = `${this.apiRoot}api/Visita_Detalle/Adjunto/`;
+    this.http.post(apiURL, Adjunto).subscribe();
+     }
 }

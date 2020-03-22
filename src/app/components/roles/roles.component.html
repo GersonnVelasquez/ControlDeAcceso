@@ -8,7 +8,7 @@
         <div class="card-body">
           <form [formGroup]="RolesForm" (ngSubmit)="AgregarRol()" autocomplete="off" novalidate>
             <div class="form-group">
-              <label for="Descripcion">Descripcion:</label>
+              <label for="Descripcion">Descripción:</label>
               <input type="text" class="form-control" id="Descripcion" aria-describedby="Descripcion"
                 placeholder="Ejem: Administrador" formControlName="Descripcion"
                 [ngClass]="{ 'is-invalid': RolesForm.get('Descripcion').invalid && (RolesForm.get('Descripcion').dirty || RolesForm.get('Descripcion').touched),

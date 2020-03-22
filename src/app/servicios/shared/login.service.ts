@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { StaticVar } from 'src/app/VaribalesEstaticas';
+import { ResourceLoader } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,7 @@ export class LoginService {
   }
 
   public logout(): void {
-    this._login = false;
-    this.router.navigate(['/login']);
-  }
+       this._login = false;
+       this.router.navigate(['/login']);
+          }
 }
